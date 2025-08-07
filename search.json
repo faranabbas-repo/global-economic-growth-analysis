@@ -102,14 +102,14 @@
     "href": "model.html#cross-sectional-model-2023",
     "title": "Econometric Models and Results",
     "section": "Cross-Sectional Model (2023)",
-    "text": "Cross-Sectional Model (2023)\nThe cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:\n\\[\\text{GDP Growth}_i = \\beta_0 + \\beta_1 \\log(\\text{GNI per capita}_i) + \\beta_2 \\text{Trade openness}_i + \\beta_3 \\text{Investment}_i + \\beta_4 \\text{Unemployment}_i + \\beta_5 \\text{Inflation}_i + \\epsilon_i\\]\nWhere \\(i\\) indexes countries and \\(\\epsilon_i\\) is the error term."
+    "text": "Cross-Sectional Model (2023)\nThe cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:\n\\[\\text{GDP Growth}_i = \\beta_0 + \\beta_1 \\log(\\text{GNI per capita}_i) +\n\\beta_2 \\text{Trade openness}_i + \\beta_3 \\text{Investment}_i +\n\\beta_4 \\text{Unemployment}_i + \\beta_5 \\text{Inflation}_i + \\epsilon_i\\]\nWhere \\(i\\) indexes countries and \\(\\epsilon_i\\) is the error term."
   },
   {
     "objectID": "model.html#panel-data-model-with-fixed-effects-2000-2023",
     "href": "model.html#panel-data-model-with-fixed-effects-2000-2023",
     "title": "Econometric Models and Results",
     "section": "Panel Data Model with Fixed Effects (2000-2023)",
-    "text": "Panel Data Model with Fixed Effects (2000-2023)\nThe panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:\n\\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) + \\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} + \\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} + \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere: - \\(i\\) indexes countries, \\(t\\) indexes time (years) - \\(\\alpha_i\\) represents country-specific fixed effects (controlling for time-invariant country characteristics) - \\(\\gamma_t\\) represents year-specific fixed effects (controlling for global shocks and trends) - \\(\\epsilon_{it}\\) is the idiosyncratic error term"
+    "text": "Panel Data Model with Fixed Effects (2000-2023)\nThe panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:\n\\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) +\n\\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} +\n\\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} + \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere: - \\(i\\) indexes countries, \\(t\\) indexes time (years) - \\(\\alpha_i\\) represents country-specific fixed effects (controlling for time-invariant country characteristics) - \\(\\gamma_t\\) represents year-specific fixed effects (controlling for global shocks and trends) - \\(\\epsilon_{it}\\) is the idiosyncratic error term"
   },
   {
     "objectID": "model.html#regression-results",
@@ -144,7 +144,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "I am Faran Abbas, a graduate student in World Economy at Shandong University. You can view my work on GitHub or contact me at [(faranabbas@hotmail.com)].\nThis project analyzes the drivers of economic growth across more than 180 countries from 2000–2023, using comprehensive data from the World Bank’s World Development Indicators. Through both cross-sectional and panel data methodologies, the analysis identifies investment (gross capital formation) as the most significant predictor of GDP growth, alongside trade openness and labor market conditions.\nYou can view the repository here.\nThis project was created as a part of Kane’s Data Science Bootcamp with the help of WDI datasets and AI chat tools."
+    "text": "I am Faran Abbas, a graduate student in World Economy at Shandong University. You can view my work on GitHub or contact me at faranabbas@hotmail.com.\nThis project analyzes the drivers of economic growth across more than 180 countries from 2000–2023, using comprehensive data from the World Bank’s World Development Indicators. Through both cross-sectional and panel data methodologies, the analysis identifies investment (gross capital formation) as the most significant predictor of GDP growth, alongside trade openness and labor market conditions.\nYou can view the repository here.\nThis project was created as a part of Kane’s Data Science Bootcamp with the help of WDI datasets and AI chat tools."
   },
   {
     "objectID": "index.html",

@@ -4301,13 +4301,17 @@ window.Quarto = {
 <section id="cross-sectional-model-2023" class="level2">
 <h2 class="anchored" data-anchor-id="cross-sectional-model-2023">Cross-Sectional Model (2023)</h2>
 <p>The cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:</p>
-<p><span class="math display">\[\text{GDP Growth}_i = \beta_0 + \beta_1 \log(\text{GNI per capita}_i) + \beta_2 \text{Trade openness}_i + \beta_3 \text{Investment}_i + \beta_4 \text{Unemployment}_i + \beta_5 \text{Inflation}_i + \epsilon_i\]</span></p>
+<p><span class="math display">\[\text{GDP Growth}_i = \beta_0 + \beta_1 \log(\text{GNI per capita}_i) +
+\beta_2 \text{Trade openness}_i + \beta_3 \text{Investment}_i +
+\beta_4 \text{Unemployment}_i + \beta_5 \text{Inflation}_i + \epsilon_i\]</span></p>
 <p>Where <span class="math inline">\(i\)</span> indexes countries and <span class="math inline">\(\epsilon_i\)</span> is the error term.</p>
 </section>
 <section id="panel-data-model-with-fixed-effects-2000-2023" class="level2">
 <h2 class="anchored" data-anchor-id="panel-data-model-with-fixed-effects-2000-2023">Panel Data Model with Fixed Effects (2000-2023)</h2>
 <p>The panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:</p>
-<p><span class="math display">\[\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) + \beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} + \beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}\]</span></p>
+<p><span class="math display">\[\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) +
+\beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} +
+\beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}\]</span></p>
 <p>Where: - <span class="math inline">\(i\)</span> indexes countries, <span class="math inline">\(t\)</span> indexes time (years) - <span class="math inline">\(\alpha_i\)</span> represents country-specific fixed effects (controlling for time-invariant country characteristics) - <span class="math inline">\(\gamma_t\)</span> represents year-specific fixed effects (controlling for global shocks and trends) - <span class="math inline">\(\epsilon_{it}\)</span> is the idiosyncratic error term</p>
 <hr>
 </section>
