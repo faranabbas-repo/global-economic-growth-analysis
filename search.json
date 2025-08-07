@@ -1,241 +1,108 @@
 [
   {
-    "objectID": "trends2.html",
-    "href": "trends2.html",
+    "objectID": "trends.html",
+    "href": "trends.html",
     "title": "Economic Trends and Regional Analysis",
     "section": "",
     "text": "Understanding regional patterns in economic indicators provides crucial context for interpreting our growth models. This analysis examines how key variables—income per capita, trade openness, investment, and unemployment—vary across world regions in 2023, and explores their evolution over the 2000-2023 period."
   },
   {
-    "objectID": "trends2.html#income-and-development-disparities",
-    "href": "trends2.html#income-and-development-disparities",
+    "objectID": "trends.html#income-and-development-disparities",
+    "href": "trends.html#income-and-development-disparities",
     "title": "Economic Trends and Regional Analysis",
     "section": "Income and Development Disparities",
     "text": "Income and Development Disparities\n\n\n\n\n\nLog scale used to better show disparities. Box plots show distribution within each region.\n\n\n\nIncome per Capita by Region (2023)\n\n\n\n\nIncome Statistics by Region (2023)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome per Capita (US$)\n\n\n\nregion\nCountries\nMin Income\nMedian Income\nMax Income\nMean Income\nStd Dev\n\n\n\n\nNorth America\n2\n54,660\n67,685\n80,710\n67,685\n18,420\n\n\nEurope & Central Asia\n44\n1,840\n24,190\n103,170\n33,332\n27,595\n\n\nEast Asia & Pacific\n20\n2,020\n9,450\n69,850\n24,078\n24,540\n\n\nLatin America & Caribbean\n19\n1,760\n6,890\n35,540\n9,947\n8,124\n\n\nMiddle East & North Africa\n15\n3,510\n5,920\n54,280\n17,517\n18,233\n\n\nSouth Asia\n8\n370\n2,730\n11,090\n3,385\n3,317\n\n\nSub-Saharan Africa\n33\n220\n1,290\n12,070\n2,368\n2,671\n\n\n\n\n\nKey Insights: - North America leads with median income &gt;$50,000, but with high internal variation - Sub-Saharan Africa faces the greatest challenge with median income &lt;$2,000 - East Asia & Pacific shows tremendous diversity, from low-income to high-income countries - Income inequality within regions is substantial, especially in East Asia & Pacific and Europe & Central Asia"
   },
   {
-    "objectID": "trends2.html#trade-integration-patterns",
-    "href": "trends2.html#trade-integration-patterns",
+    "objectID": "trends.html#trade-integration-patterns",
+    "href": "trends.html#trade-integration-patterns",
     "title": "Economic Trends and Regional Analysis",
     "section": "Trade Integration Patterns",
     "text": "Trade Integration Patterns\n\n\n\n\n\n\nRegional Distribution of Export Shares\n\n\n\n\n\n\n\nTrade Openness vs. Income Level\n\n\n\n\n\n\nTrade Openness Across Regions\n\n\n\n\n\n\nTrade Openness Statistics by Region (2023)\n\n\nregion\nCountries\nMean Exports (% GDP)\nMedian Exports (% GDP)\nMin Exports (% GDP)\nMax Exports (% GDP)\nHighly Trade-Oriented (&gt;50%)\n\n\n\n\nEurope & Central Asia\n44\n61.0\n54.0\n24.4\n217.8\n23\n\n\nMiddle East & North Africa\n15\n60.7\n42.8\n19.1\n150.0\n7\n\n\nEast Asia & Pacific\n20\n60.1\n50.5\n18.8\n181.6\n10\n\n\nLatin America & Caribbean\n19\n31.1\n30.8\n5.3\n55.3\n1\n\n\nSub-Saharan Africa\n33\n29.4\n27.0\n5.3\n64.2\n2\n\n\nSouth Asia\n8\n24.0\n18.8\n7.0\n74.4\n1\n\n\nNorth America\n2\n22.2\n22.2\n11.0\n33.3\n0\n\n\n\n\n\nTrade Pattern Analysis: - Europe & Central Asia shows highest average trade openness (42.1% of GDP) - Sub-Saharan Africa has moderate trade integration but high variation - North America surprisingly shows lower trade shares relative to economic development - Small island states and resource-rich countries often show extreme values"
   },
   {
-    "objectID": "trends2.html#investment-and-capital-formation",
-    "href": "trends2.html#investment-and-capital-formation",
+    "objectID": "trends.html#investment-and-capital-formation",
+    "href": "trends.html#investment-and-capital-formation",
     "title": "Economic Trends and Regional Analysis",
     "section": "Investment and Capital Formation",
     "text": "Investment and Capital Formation\n\n\n\n\n\nInvestment Patterns Across Regions\n\n\n\n\n\n\n\n\n\nInvestment vs GDP Growth Relationship by Region\n\n\n\n\nInvestment Insights: - East Asia & Pacific shows strongest investment-growth correlation - Sub-Saharan Africa has high investment rates but more variable growth outcomes - Europe & Central Asia shows moderate investment with stable growth - Some regions show weak investment-growth relationships, suggesting other factors matter"
   },
   {
-    "objectID": "trends2.html#long-term-trends-in-key-indicators",
-    "href": "trends2.html#long-term-trends-in-key-indicators",
+    "objectID": "trends.html#long-term-trends-in-key-indicators",
+    "href": "trends.html#long-term-trends-in-key-indicators",
     "title": "Economic Trends and Regional Analysis",
     "section": "Long-term Trends in Key Indicators",
     "text": "Long-term Trends in Key Indicators\n\n\n\n\n\nEvolution of Economic Indicators Over Time\n\n\n\n\nTime Trend Analysis: - 2008-2009 Financial Crisis: Clear impact on GDP growth across all regions - 2020 COVID-19 Pandemic: Sharp GDP decline followed by recovery - Investment Stability: Most regions maintain investment rates around 20-25% of GDP - Trade Evolution: Generally increasing until mid-2010s, then plateauing - Unemployment: Europe & Central Asia shows highest and most volatile unemployment"
   },
   {
-    "objectID": "trends2.html#crisis-impact-analysis",
-    "href": "trends2.html#crisis-impact-analysis",
+    "objectID": "trends.html#crisis-impact-analysis",
+    "href": "trends.html#crisis-impact-analysis",
     "title": "Economic Trends and Regional Analysis",
     "section": "Crisis Impact Analysis",
     "text": "Crisis Impact Analysis\n\n\n\nRegional Economic Performance During Crisis Years\n\n\n\n\n\n\n\n\n\n\n\n\n\nAverage GDP Growth Rate (%)\n\n\n\nregion\nPre-Crisis (2005-2007)\nFinancial Crisis (2008-2009)\nRecovery (2010-2012)\nStable Growth (2013-2019)\nCOVID-19 (2020-2021)\nPost-COVID (2022-2023)\n\n\n\n\nEast Asia & Pacific\n5.59\n2.79\n5.78\n3.80\n-0.29\n3.92\n\n\nEurope & Central Asia\n6.10\n-0.78\n2.08\n2.80\n1.47\n3.09\n\n\nLatin America & Caribbean\n4.92\n1.85\n4.26\n2.70\n0.96\n3.62\n\n\nMiddle East & North Africa\n6.11\n4.10\n5.26\n2.81\n-0.36\n4.03\n\n\nNorth America\n2.70\n-1.10\n2.42\n2.28\n1.20\n2.78\n\n\nSouth Asia\n6.74\n4.99\n5.56\n5.58\n-0.17\n3.56\n\n\nSub-Saharan Africa\n5.35\n3.90\n4.87\n3.58\n1.12\n4.64\n\n\n\n\n\nCrisis Impact Observations: - Financial Crisis (2008-2009): All regions experienced significant slowdown, with Europe & Central Asia hit hardest - COVID-19 (2020-2021): More uniform global impact, but faster recovery than 2008-2009 - Sub-Saharan Africa: Shows resilience during crises but consistently lower growth during stable periods - East Asia & Pacific: Demonstrates strong recovery capacity after both crises"
   },
   {
-    "objectID": "trends2.html#investment-leaders-and-their-outcomes",
-    "href": "trends2.html#investment-leaders-and-their-outcomes",
+    "objectID": "trends.html#investment-leaders-and-their-outcomes",
+    "href": "trends.html#investment-leaders-and-their-outcomes",
     "title": "Economic Trends and Regional Analysis",
     "section": "Investment Leaders and Their Outcomes",
     "text": "Investment Leaders and Their Outcomes\n\n\n\n\n\nInvestment Champions: Countries with Consistently High Investment Rates"
   },
   {
-    "objectID": "trends2.html#trade-growth-success-stories",
-    "href": "trends2.html#trade-growth-success-stories",
+    "objectID": "trends.html#trade-growth-success-stories",
+    "href": "trends.html#trade-growth-success-stories",
     "title": "Economic Trends and Regional Analysis",
     "section": "Trade-Growth Success Stories",
     "text": "Trade-Growth Success Stories\n\n\n\n\n\n\nTrade Openness and Growth Performance\n\n\n\n\n\n\n\nRegional Export Champions\n\n\n\n\n\n\nExport-Led Growth: Countries Benefiting from Trade Openness"
   },
   {
-    "objectID": "trends2.html#income-convergence-patterns",
-    "href": "trends2.html#income-convergence-patterns",
+    "objectID": "trends.html#income-convergence-patterns",
+    "href": "trends.html#income-convergence-patterns",
     "title": "Economic Trends and Regional Analysis",
     "section": "Income Convergence Patterns",
     "text": "Income Convergence Patterns\n\n\n\n\n\nTesting Economic Convergence: Initial Income vs. Growth Performance\n\n\n\n\n\n\n\nConvergence Analysis by Income Group\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome (US$)\n\n\nGrowth Performance (%)\n\n\n\nincome_group\nCountries\nAvg Initial Income\nAvg Growth Rate\nMedian Growth Rate\nGrowth Std Dev\nTop Quartile Growth\n\n\n\n\nHigh Income\n28\n28,041\n2.36\n1.82\n1.59\n2.86\n\n\nUpper-Middle Income\n19\n9,522\n2.96\n2.78\n1.62\n3.62\n\n\nLower-Middle Income\n52\n2,456\n3.33\n3.44\n1.10\n3.88\n\n\nLow Income\n51\n485\n4.64\n4.65\n1.73\n5.91\n\n\n\n\n\nConvergence Findings: - Conditional convergence is evident: poorer countries do tend to grow faster on average - However, there’s high variation within income groups - Middle-income countries show particularly strong growth performance - High-income countries have lower but more stable growth rates"
   },
   {
-    "objectID": "trends2.html#sub-saharan-africa-the-investment-paradox",
-    "href": "trends2.html#sub-saharan-africa-the-investment-paradox",
+    "objectID": "trends.html#sub-saharan-africa-the-investment-paradox",
+    "href": "trends.html#sub-saharan-africa-the-investment-paradox",
     "title": "Economic Trends and Regional Analysis",
     "section": "Sub-Saharan Africa: The Investment Paradox",
     "text": "Sub-Saharan Africa: The Investment Paradox\n\n\n\n\n\n\nInvestment vs. Growth in African Countries\n\n\n\n\n\n\n\nComparison with Other Regions\n\n\n\n\n\n\nSub-Saharan Africa: High Investment, Variable Returns"
   },
   {
-    "objectID": "trends2.html#east-asia-pacific-the-growth-champions",
-    "href": "trends2.html#east-asia-pacific-the-growth-champions",
+    "objectID": "trends.html#east-asia-pacific-the-growth-champions",
+    "href": "trends.html#east-asia-pacific-the-growth-champions",
     "title": "Economic Trends and Regional Analysis",
     "section": "East Asia & Pacific: The Growth Champions",
     "text": "East Asia & Pacific: The Growth Champions\n\n\n\n\n\nEast Asia & Pacific Success Factors"
   },
   {
-    "objectID": "trends2.html#regional-development-strategies",
-    "href": "trends2.html#regional-development-strategies",
+    "objectID": "trends.html#regional-development-strategies",
+    "href": "trends.html#regional-development-strategies",
     "title": "Economic Trends and Regional Analysis",
     "section": "Regional Development Strategies",
     "text": "Regional Development Strategies\n\n\n\nRegional Development Priorities Based on Economic Indicators\n\n\n\n\n\n\n\n\n\n\n\nPolicy Priorities\n\n\n\nRegion\nDevelopment Stage\nInvestment\nTrade\nLabor\n\n\n\n\nEast Asia & Pacific\nHigh-income: Innovation & services\nLow - Maintain levels\nLow - Sustain performance\nLow - Maintain flexibility\n\n\nSub-Saharan Africa\nLow-income: Basic infrastructure\nMedium - Improve efficiency\nMedium - Diversify exports\nMedium - Skills and matching\n\n\nMiddle East & North Africa\nHigh-income: Innovation & services\nMedium - Improve efficiency\nLow - Sustain performance\nHigh - Job creation urgently needed\n\n\nSouth Asia\nLow-income: Basic infrastructure\nLow - Maintain levels\nHigh - Enhance competitiveness\nMedium - Skills and matching\n\n\nLatin America & Caribbean\nMiddle-income: Technology & institutions\nMedium - Improve efficiency\nMedium - Diversify exports\nMedium - Skills and matching\n\n\nNorth America\nHigh-income: Innovation & services\nMedium - Improve efficiency\nHigh - Enhance competitiveness\nLow - Maintain flexibility\n\n\nEurope & Central Asia\nHigh-income: Innovation & services\nMedium - Improve efficiency\nLow - Sustain performance\nMedium - Skills and matching"
   },
   {
-    "objectID": "trends2.html#key-regional-insights",
-    "href": "trends2.html#key-regional-insights",
+    "objectID": "trends.html#key-regional-insights",
+    "href": "trends.html#key-regional-insights",
     "title": "Economic Trends and Regional Analysis",
     "section": "Key Regional Insights",
     "text": "Key Regional Insights\n\nInvestment Remains King: Across all regions, countries with higher investment rates tend to achieve better growth outcomes, but the relationship varies in strength\nTrade Integration Benefits: Regions with higher trade openness generally perform better, but the relationship depends on export composition and competitiveness\nRegional Convergence: There’s evidence of convergence within regions, with poorer countries growing faster, but significant variation remains\nCrisis Resilience: Regions with more diversified economies and stronger institutions show better crisis recovery"
   },
   {
-    "objectID": "trends2.html#strategic-recommendations-by-region",
-    "href": "trends2.html#strategic-recommendations-by-region",
+    "objectID": "trends.html#strategic-recommendations-by-region",
+    "href": "trends.html#strategic-recommendations-by-region",
     "title": "Economic Trends and Regional Analysis",
     "section": "Strategic Recommendations by Region",
     "text": "Strategic Recommendations by Region\n\nSub-Saharan Africa: Focus on investment quality and institutional capacity building\nEast Asia & Pacific: Maintain high investment while transitioning to innovation-driven growth\n\nEurope & Central Asia: Address unemployment through labor market reforms\nLatin America & Caribbean: Enhance trade competitiveness and reduce volatility\nMiddle East & North Africa: Diversify beyond natural resources, boost private investment\nSouth Asia: Scale up infrastructure investment while managing macroeconomic stability\nNorth America: Maintain technological leadership while addressing inequality"
   },
   {
-    "objectID": "trends2.html#looking-forward",
-    "href": "trends2.html#looking-forward",
+    "objectID": "trends.html#looking-forward",
+    "href": "trends.html#looking-forward",
     "title": "Economic Trends and Regional Analysis",
     "section": "Looking Forward",
     "text": "Looking Forward\nThe analysis reveals that while investment universally drives growth, the effectiveness varies significantly across regions due to differences in institutions, human capital, and economic structure. Successful development strategies must be tailored to regional conditions while learning from global best practices."
-  },
-  {
-    "objectID": "sources.html",
-    "href": "sources.html",
-    "title": "Data Sources and Methodology",
-    "section": "",
-    "text": "This analysis relies on the World Bank’s World Development Indicators (WDI), the primary World Bank collection of development indicators compiled from officially recognized international sources. The WDI presents the most current and accurate global development data available and includes national, regional, and global estimates.\n\nDatabase: World Development Indicators\nPublisher: The World Bank Group\nAccess Method: WDI R package and direct API access\nData Collection Period: July 2025\nCoverage: 217 economies, 1,400+ indicators\nTime Span: 1960-2023 (analysis focuses on 2000-2023)\n\n\n\n\nThe World Bank WDI is widely regarded as the gold standard for cross-country economic data because:\n\nOfficial Sources: Data compiled from national statistical offices and international organizations\nStandardized Methodology: Consistent definitions and measurement approaches across countries\nRegular Updates: Quarterly updates with annual comprehensive revisions\nExtensive Coverage: Broad geographical and temporal coverage\nQuality Controls: Rigorous validation and cross-checking procedures"
-  },
-  {
-    "objectID": "sources.html#primary-data-source-world-bank-world-development-indicators-wdi",
-    "href": "sources.html#primary-data-source-world-bank-world-development-indicators-wdi",
-    "title": "Data Sources and Methodology",
-    "section": "",
-    "text": "This analysis relies on the World Bank’s World Development Indicators (WDI), the primary World Bank collection of development indicators compiled from officially recognized international sources. The WDI presents the most current and accurate global development data available and includes national, regional, and global estimates.\n\nDatabase: World Development Indicators\nPublisher: The World Bank Group\nAccess Method: WDI R package and direct API access\nData Collection Period: July 2025\nCoverage: 217 economies, 1,400+ indicators\nTime Span: 1960-2023 (analysis focuses on 2000-2023)"
-  },
-  {
-    "objectID": "sources.html#data-quality-and-reliability",
-    "href": "sources.html#data-quality-and-reliability",
-    "title": "Data Sources and Methodology",
-    "section": "",
-    "text": "The World Bank WDI is widely regarded as the gold standard for cross-country economic data because:\n\nOfficial Sources: Data compiled from national statistical offices and international organizations\nStandardized Methodology: Consistent definitions and measurement approaches across countries\nRegular Updates: Quarterly updates with annual comprehensive revisions\nExtensive Coverage: Broad geographical and temporal coverage\nQuality Controls: Rigorous validation and cross-checking procedures"
-  },
-  {
-    "objectID": "sources.html#economic-growth-and-development-indicators",
-    "href": "sources.html#economic-growth-and-development-indicators",
-    "title": "Data Sources and Methodology",
-    "section": "Economic Growth and Development Indicators",
-    "text": "Economic Growth and Development Indicators\n\n\n\nDetailed Variable Definitions and WDI Codes\n\n\nVariable.Name\nWDI.Code\nDefinition\nUnits\nData.Source\n\n\n\n\nGDP Growth Rate\nNY.GDP.MKTP.KD.ZG\nAnnual percentage growth rate of GDP at market prices based on constant local currency\nAnnual % change\nNational accounts data\n\n\nGNI per Capita\nNY.GNP.PCAP.CD\nGross national income per capita in current US dollars using Atlas method\nCurrent US$\nWorld Bank national accounts, OECD\n\n\nTrade Openness\nNE.EXP.GNFS.ZS\nExports of goods and services as percentage of GDP\n% of GDP\nNational accounts, balance of payments\n\n\nInvestment Rate\nNE.GDI.TOTL.ZS\nGross capital formation (investment) as percentage of GDP\n% of GDP\nNational accounts data\n\n\nConsumer Price Index\nFP.CPI.TOTL\nConsumer price index reflecting changes in cost to average consumer\nIndex (2010=100)\nInternational Monetary Fund\n\n\nUnemployment Rate\nSL.UEM.TOTL.ZS\nUnemployment as percentage of total labor force (modeled ILO estimate)\n% of labor force\nInternational Labour Organization"
-  },
-  {
-    "objectID": "sources.html#regional-and-income-classifications",
-    "href": "sources.html#regional-and-income-classifications",
-    "title": "Data Sources and Methodology",
-    "section": "Regional and Income Classifications",
-    "text": "Regional and Income Classifications\nThe analysis uses World Bank regional and income group classifications:\n\nRegional Classifications (7 regions)\n\nEast Asia & Pacific: China, Indonesia, Thailand, Philippines, etc.\nEurope & Central Asia: Russia, Turkey, Poland, Ukraine, etc.\n\nLatin America & Caribbean: Brazil, Mexico, Argentina, Chile, etc.\nMiddle East & North Africa: Saudi Arabia, Egypt, Iran, Morocco, etc.\nNorth America: United States, Canada\nSouth Asia: India, Pakistan, Bangladesh, Sri Lanka, etc.\nSub-Saharan Africa: Nigeria, South Africa, Kenya, Ghana, etc.\n\n\n\nIncome Classifications (4 groups, FY2024)\n\nLow income: GNI per capita ≤ $1,135\nLower middle income: GNI per capita $1,136 - $4,465\n\nUpper middle income: GNI per capita $4,466 - $13,845\nHigh income: GNI per capita ≥ $13,846"
-  },
-  {
-    "objectID": "sources.html#automated-data-retrieval",
-    "href": "sources.html#automated-data-retrieval",
-    "title": "Data Sources and Methodology",
-    "section": "Automated Data Retrieval",
-    "text": "Automated Data Retrieval\n\n\nCode\n# R code used for data collection\nlibrary(WDI)\nlibrary(tidyverse)\n\n# Define indicators to download\nindicators &lt;- c(\n  \"NY.GDP.MKTP.KD.ZG\",    # GDP growth (annual %)\n  \"NY.GNP.PCAP.CD\",       # GNI per capita (current US$)  \n  \"NE.EXP.GNFS.ZS\",       # Exports of goods and services (% of GDP)\n  \"NE.GDI.TOTL.ZS\",       # Gross capital formation (% of GDP)\n  \"FP.CPI.TOTL\",          # Consumer prices (index)\n  \"SL.UEM.TOTL.ZS\"        # Unemployment (% of labor force)\n)\n\n# Download panel data (2000-2023)\npanel_data &lt;- WDI(\n  indicator = indicators,\n  start = 2000,\n  end = 2023, \n  extra = TRUE  # Include regional and income classifications\n)\n\n# Download cross-sectional data (2023 only)\ncross_data &lt;- WDI(\n  indicator = indicators,\n  start = 2023,\n  end = 2023,\n  extra = TRUE\n)"
-  },
-  {
-    "objectID": "sources.html#data-processing-steps",
-    "href": "sources.html#data-processing-steps",
-    "title": "Data Sources and Methodology",
-    "section": "Data Processing Steps",
-    "text": "Data Processing Steps\n\nStep 1: Initial Data Assessment\n\n\nCode\n# Examine data structure and coverage\nglimpse(panel_data)\n\n# Check missing values by indicator\nmissing_summary &lt;- panel_data %&gt;%\n  select(-country, -iso2c, -iso3c, -year, -region, -capital, -longitude, \n         -latitude, -income, -lending) %&gt;%\n  summarise_all(~sum(is.na(.))) %&gt;%\n  pivot_longer(everything(), names_to = \"indicator\", values_to = \"missing_values\")\n\n\n\n\nStep 2: Data Cleaning and Transformation\n\nVariable Renaming: WDI codes renamed to intuitive variable names\nMissing Value Treatment: Complete case analysis (listwise deletion)\nOutlier Detection: Examined extreme values for economic plausibility\nDerived Variables: Created log transformations and inflation rates\nRegional Filtering: Removed aggregated regions, keeping only countries\n\n\n\nStep 3: Quality Assurance\n\nRange Checks: Verified variables within expected ranges\nConsistency Checks: Cross-validated related indicators\nTemporal Validation: Checked for implausible year-to-year changes\nCross-Country Validation: Compared values across similar countries"
-  },
-  {
-    "objectID": "sources.html#coverage-limitations",
-    "href": "sources.html#coverage-limitations",
-    "title": "Data Sources and Methodology",
-    "section": "Coverage Limitations",
-    "text": "Coverage Limitations\n\n\n\nData Coverage by Region and Time Period\n\n\nregion\nCountries\nTotal Observations\nYears Covered\nAvg Observations per Country\nComplete Cases (%)\n\n\n\n\nEast Asia & Pacific\n24\n537\n2000 - 2023\n22.4\n672.3\n\n\nEurope & Central Asia\n47\n1097\n2000 - 2023\n23.3\n329.1\n\n\nLatin America & Caribbean\n23\n494\n2000 - 2023\n21.5\n730.8\n\n\nMiddle East & North Africa\n19\n421\n2000 - 2023\n22.2\n857.5\n\n\nNorth America\n2\n48\n2000 - 2023\n24.0\n7520.8\n\n\nSouth Asia\n8\n153\n2000 - 2023\n19.1\n2359.5\n\n\nSub-Saharan Africa\n41\n860\n2000 - 2023\n21.0\n419.8"
-  },
-  {
-    "objectID": "sources.html#known-data-limitations",
-    "href": "sources.html#known-data-limitations",
-    "title": "Data Sources and Methodology",
-    "section": "Known Data Limitations",
-    "text": "Known Data Limitations\n\nMissing Data Patterns\n\nSystematic Missing: Some countries lack data for specific indicators (especially unemployment)\nTemporal Gaps: Data availability varies by country development level\nIndicator-Specific: Investment and trade data more complete than unemployment data\n\n\n\nMeasurement Issues\n\nNational Accounts Revisions: Historical GDP data subject to periodic revisions\nExchange Rate Effects: Dollar-denominated variables affected by currency fluctuations\n\nInformal Economy: GDP measures may underestimate economic activity in developing countries\nDefinition Changes: Some indicators have evolved over time\n\n\n\nCountry-Specific Considerations\n\nSmall Island States: High volatility due to economic structure\nResource-Rich Countries: Growth patterns influenced by commodity cycles\nPost-Conflict Countries: Data quality may be compromised during transition periods\nFederal Systems: Sub-national variation may not be captured"
-  },
-  {
-    "objectID": "sources.html#model-selection-rationale",
-    "href": "sources.html#model-selection-rationale",
-    "title": "Data Sources and Methodology",
-    "section": "Model Selection Rationale",
-    "text": "Model Selection Rationale\n\nCross-Sectional vs. Panel Analysis\n\nCross-sectional (2023): Captures current relationships and country differences\nPanel data (2000-2023): Controls for time-invariant country characteristics and global trends\nFixed Effects: Addresses unobserved heterogeneity and endogeneity concerns\n\n\n\nVariable Transformations\n\n\nCode\n# Log transformation for income\nmodel_data$log_gni_per_capita &lt;- log(model_data$gni_per_capita + 1)\n\n# Inflation rate calculation\nmodel_data &lt;- model_data %&gt;%\n  arrange(country, year) %&gt;%\n  group_by(country) %&gt;%\n  mutate(inflation_rate = (cpi / lag(cpi, order_by = year) - 1) * 100) %&gt;%\n  ungroup()\n\n\nRationale for Transformations: - Log Income: Addresses skewness and allows for percentage interpretation - Inflation Rate: More intuitive than price index levels - Growth Rates: Already in percentage form, no transformation needed"
-  },
-  {
-    "objectID": "sources.html#statistical-considerations",
-    "href": "sources.html#statistical-considerations",
-    "title": "Data Sources and Methodology",
-    "section": "Statistical Considerations",
-    "text": "Statistical Considerations\n\nSample Selection\n\nBalanced vs. Unbalanced: Uses unbalanced panel to maximize sample size\nComplete Cases: Requires non-missing values for all variables in analysis\nTime Period: 2000-2023 chosen to capture recent development patterns\n\n\n\nEconometric Assumptions\n\nLinearity: Relationships assumed linear after transformations\nExogeneity: Fixed effects help address endogeneity concerns\nHomoscedasticity: Robust standard errors used where appropriate\nIndependence: Country-clustered standard errors account for within-country correlation"
-  },
-  {
-    "objectID": "sources.html#reproducible-research-framework",
-    "href": "sources.html#reproducible-research-framework",
-    "title": "Data Sources and Methodology",
-    "section": "Reproducible Research Framework",
-    "text": "Reproducible Research Framework\nThis analysis follows reproducible research principles:\n\nVersion Control: All code available on GitHub\nAutomated Pipeline: Data download to final results fully scripted\nDocumentation: Comprehensive documentation of all steps\nEnvironment: R session info and package versions recorded"
-  },
-  {
-    "objectID": "sources.html#data-access-information",
-    "href": "sources.html#data-access-information",
-    "title": "Data Sources and Methodology",
-    "section": "Data Access Information",
-    "text": "Data Access Information"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Global Economic Growth Analysis (2000–2023)",
-    "section": "",
-    "text": "This comprehensive analysis examines the key determinants of economic growth across more than 180 countries from 2000 to 2023, using data from the World Bank’s World Development Indicators. Through both cross-sectional and panel data methodologies, we identify investment (gross capital formation) as the most significant driver of GDP growth, followed by trade openness and macroeconomic stability indicators.\n\n\n\n\n\nModel Performance Comparison\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nR.squared\nAdj..R.squared\nF.statistic\nP.value\nObservations\n\n\n\n\nvalue\nCross-Sectional (2023)\n0.0113\n-0.0177\n0.3901\n0.8155\n141\n\n\n\nFixed Effects Panel (2000-2023)\n0.0496\n-0.0032\n44.6148\n0.0000\n3610"
-  },
-  {
-    "objectID": "index.html#model-performance-summary",
-    "href": "index.html#model-performance-summary",
-    "title": "Global Economic Growth Analysis (2000–2023)",
-    "section": "",
-    "text": "Model Performance Comparison\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nR.squared\nAdj..R.squared\nF.statistic\nP.value\nObservations\n\n\n\n\nvalue\nCross-Sectional (2023)\n0.0113\n-0.0177\n0.3901\n0.8155\n141\n\n\n\nFixed Effects Panel (2000-2023)\n0.0496\n-0.0032\n44.6148\n0.0000\n3610"
-  },
-  {
-    "objectID": "index.html#variables-used",
-    "href": "index.html#variables-used",
-    "title": "Global Economic Growth Analysis (2000–2023)",
-    "section": "Variables Used",
-    "text": "Variables Used\n\nGDP Growth: Annual percentage growth rate of GDP at market prices\nIncome per Capita: Log of Gross National Income per capita (current US$)\nTrade Openness: Exports of goods and services as percentage of GDP\nInvestment: Gross capital formation as percentage of GDP\n\nUnemployment: Unemployment rate as percentage of total labor force\nInflation: Annual inflation rate based on Consumer Price Index"
-  },
-  {
-    "objectID": "index.html#statistical-models",
-    "href": "index.html#statistical-models",
-    "title": "Global Economic Growth Analysis (2000–2023)",
-    "section": "Statistical Models",
-    "text": "Statistical Models\n\nCross-Sectional Analysis (2023): Multiple linear regression examining relationships in the most recent year\nPanel Data Analysis (2000-2023): Two-way fixed effects model controlling for country-specific and time-specific factors\n\nThe panel model specification: \\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) + \\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} + \\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} + \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere \\(\\alpha_i\\) represents country fixed effects, \\(\\gamma_t\\) represents year fixed effects, and \\(\\epsilon_{it}\\) is the error term."
-  },
-  {
-    "objectID": "index.html#key-findings",
-    "href": "index.html#key-findings",
-    "title": "Global Economic Growth Analysis (2000–2023)",
-    "section": "Key Findings",
-    "text": "Key Findings\n\nInvestment drives growth: A 1 percentage point increase in gross capital formation (as % of GDP) is associated with a 0.2-0.3 percentage point increase in GDP growth\nTrade openness matters: Countries with higher export shares tend to experience faster economic growth\nRegional disparities persist: East Asia & Pacific and Europe & Central Asia lead in investment rates, while Sub-Saharan Africa faces significant challenges\nUnemployment burden: Higher unemployment rates consistently correlate with lower GDP growth across all models"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "About this site"
   },
   {
     "objectID": "model.html",
@@ -336,45 +203,66 @@
     "text": "Policy Recommendations\nBased on these econometric findings: 1. Prioritize investment policies: Infrastructure spending, business incentives, institutional reforms 2. Enhance trade competitiveness: Export promotion, trade facilitation, quality improvements 3. Address unemployment: Active labor market policies, education and training programs 4. Maintain macroeconomic stability: Consistent policies that support business confidence"
   },
   {
-    "objectID": "trends.html",
-    "href": "trends.html",
-    "title": "Economic Trends and Regional Analysis",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "Understanding regional patterns in economic indicators provides crucial context for interpreting our growth models. This analysis examines how key variables—income per capita, trade openness, investment, and unemployment—vary across world regions in 2023, and explores their evolution over the 2000-2023 period."
+    "text": "I am Faran Abbas, a graduate student in World Economy at Shandong University. You can view my work on GitHub or contact me at faranabbas@hotmail.com.\nThis project analyzes the drivers of economic growth across more than 180 countries from 2000–2023, using comprehensive data from the World Bank’s World Development Indicators. Through both cross-sectional and panel data methodologies, the analysis identifies investment (gross capital formation) as the most significant predictor of GDP growth, alongside trade openness and labor market conditions. You can view the repository here.\nThis project was created as a part of Kane’s Data Science Bootcamp with the help of WDI datasets and AI chat tools.."
   },
   {
-    "objectID": "trends.html#income-and-development-disparities",
-    "href": "trends.html#income-and-development-disparities",
-    "title": "Economic Trends and Regional Analysis",
-    "section": "Income and Development Disparities",
-    "text": "Income and Development Disparities\n\n\n\n\n\nLog scale used to better show disparities. Box plots show distribution within each region.\n\n\n\nIncome per Capita by Region (2023)\n\n\n\n\nIncome Statistics by Region (2023)\n\n\n\n\n\n\n\n\n\n\n\n\n\nIncome per Capita (US$)\n\n\n\nregion\nCountries\nMin Income\nMedian Income\nMax Income\nMean Income\nStd Dev\n\n\n\n\nNorth America\n2\n54,660\n67,685\n80,710\n67,685\n18,420\n\n\nEurope & Central Asia\n44\n1,840\n24,190\n103,170\n33,332\n27,595\n\n\nEast Asia & Pacific\n20\n2,020\n9,450\n69,850\n24,078\n24,540\n\n\nLatin America & Caribbean\n19\n1,760\n6,890\n35,540\n9,947\n8,124\n\n\nMiddle East & North Africa\n15\n3,510\n5,920\n54,280\n17,517\n18,233\n\n\nSouth Asia\n8\n370\n2,730\n11,090\n3,385\n3,317\n\n\nSub-Saharan Africa\n33\n220\n1,290\n12,070\n2,368\n2,671\n\n\n\n\n\nKey Insights: - North America leads with median income &gt;$50,000, but with high internal variation - Sub-Saharan Africa faces the greatest challenge with median income &lt;$2,000 - East Asia & Pacific shows tremendous diversity, from low-income to high-income countries - Income inequality within regions is substantial, especially in East Asia & Pacific and Europe & Central Asia"
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Global Economic Growth Analysis (2000–2023)",
+    "section": "",
+    "text": "This comprehensive analysis examines the key determinants of economic growth across more than 180 countries from 2000 to 2023, using data from the World Bank’s World Development Indicators. Through both cross-sectional and panel data methodologies, we identify investment (gross capital formation) as the most significant driver of GDP growth, followed by trade openness and macroeconomic stability indicators.\n\n\n\n\n\nModel Performance Comparison\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nR.squared\nAdj..R.squared\nF.statistic\nP.value\nObservations\n\n\n\n\nvalue\nCross-Sectional (2023)\n0.0113\n-0.0177\n0.3901\n0.8155\n141\n\n\n\nFixed Effects Panel (2000-2023)\n0.0496\n-0.0032\n44.6148\n0.0000\n3610"
   },
   {
-    "objectID": "trends.html#trade-integration-patterns",
-    "href": "trends.html#trade-integration-patterns",
-    "title": "Economic Trends and Regional Analysis",
-    "section": "Trade Integration Patterns",
-    "text": "Trade Integration Patterns\n\n\n\n\n\n\nRegional Distribution of Export Shares\n\n\n\n\n\n\n\nTrade Openness vs. Income Level\n\n\n\n\n\n\nTrade Openness Across Regions\n\n\n\n\n\n\nTrade Openness Statistics by Region (2023)\n\n\nregion\nCountries\nMean Exports (% GDP)\nMedian Exports (% GDP)\nMin Exports (% GDP)\nMax Exports (% GDP)\nHighly Trade-Oriented (&gt;50%)\n\n\n\n\nEurope & Central Asia\n44\n61.0\n54.0\n24.4\n217.8\n23\n\n\nMiddle East & North Africa\n15\n60.7\n42.8\n19.1\n150.0\n7\n\n\nEast Asia & Pacific\n20\n60.1\n50.5\n18.8\n181.6\n10\n\n\nLatin America & Caribbean\n19\n31.1\n30.8\n5.3\n55.3\n1\n\n\nSub-Saharan Africa\n33\n29.4\n27.0\n5.3\n64.2\n2\n\n\nSouth Asia\n8\n24.0\n18.8\n7.0\n74.4\n1\n\n\nNorth America\n2\n22.2\n22.2\n11.0\n33.3\n0\n\n\n\n\n\nTrade Pattern Analysis: - Europe & Central Asia shows highest average trade openness (42.1% of GDP) - Sub-Saharan Africa has moderate trade integration but high variation - North America surprisingly shows lower trade shares relative to economic development - Small island states and resource-rich countries often show extreme values"
+    "objectID": "index.html#model-performance-summary",
+    "href": "index.html#model-performance-summary",
+    "title": "Global Economic Growth Analysis (2000–2023)",
+    "section": "",
+    "text": "Model Performance Comparison\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nR.squared\nAdj..R.squared\nF.statistic\nP.value\nObservations\n\n\n\n\nvalue\nCross-Sectional (2023)\n0.0113\n-0.0177\n0.3901\n0.8155\n141\n\n\n\nFixed Effects Panel (2000-2023)\n0.0496\n-0.0032\n44.6148\n0.0000\n3610"
   },
   {
-    "objectID": "trends.html#investment-and-capital-formation",
-    "href": "trends.html#investment-and-capital-formation",
-    "title": "Economic Trends and Regional Analysis",
-    "section": "Investment and Capital Formation",
-    "text": "Investment and Capital Formation\n\n\n\n\n\nInvestment Patterns Across Regions\n\n\n\n\n\n\n\n\n\nInvestment vs GDP Growth Relationship by Region\n\n\n\n\nInvestment Insights: - East Asia & Pacific shows strongest investment-growth correlation - Sub-Saharan Africa has high investment rates but more variable growth outcomes - Europe & Central Asia shows moderate investment with stable growth - Some regions show weak investment-growth relationships, suggesting other factors matter"
+    "objectID": "index.html#variables-used",
+    "href": "index.html#variables-used",
+    "title": "Global Economic Growth Analysis (2000–2023)",
+    "section": "Variables Used",
+    "text": "Variables Used\n\nGDP Growth: Annual percentage growth rate of GDP at market prices\nIncome per Capita: Log of Gross National Income per capita (current US$)\nTrade Openness: Exports of goods and services as percentage of GDP\nInvestment: Gross capital formation as percentage of GDP\n\nUnemployment: Unemployment rate as percentage of total labor force\nInflation: Annual inflation rate based on Consumer Price Index"
   },
   {
-    "objectID": "trends.html#long-term-trends-in-key-indicators",
-    "href": "trends.html#long-term-trends-in-key-indicators",
-    "title": "Economic Trends and Regional Analysis",
-    "section": "Long-term Trends in Key Indicators",
-    "text": "Long-term Trends in Key Indicators\n\n\n\n\n\nEvolution of Economic Indicators Over Time\n\n\n\n\nTime Trend Analysis: - 2008-2009 Financial Crisis: Clear impact on GDP growth across all regions - 2020 COVID-19 Pandemic: Sharp GDP decline followed by recovery - Investment Stability: Most regions maintain investment rates around 20-25% of GDP - Trade Evolution: Generally increasing until mid-2010s, then plateauing - Unemployment: Europe & Central Asia shows highest and most volatile unemployment"
+    "objectID": "index.html#statistical-models",
+    "href": "index.html#statistical-models",
+    "title": "Global Economic Growth Analysis (2000–2023)",
+    "section": "Statistical Models",
+    "text": "Statistical Models\n\nCross-Sectional Analysis (2023): Multiple linear regression examining relationships in the most recent year\nPanel Data Analysis (2000-2023): Two-way fixed effects model controlling for country-specific and time-specific factors\n\nThe panel model specification: \\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) +\n\\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} +\n\\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} + \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere \\(\\alpha_i\\) represents country fixed effects, \\(\\gamma_t\\) represents year fixed effects, and \\(\\epsilon_{it}\\) is the error term."
   },
   {
-    "objectID": "trends.html#crisis-impact-analysis",
-    "href": "trends.html#crisis-impact-analysis",
-    "title": "Economic Trends and Regional Analysis",
-    "section": "Crisis Impact Analysis",
-    "text": "Crisis Impact Analysis\n#| tbl-cap: “Regional Economic Performance During Crisis Years”"
+    "objectID": "index.html#key-findings",
+    "href": "index.html#key-findings",
+    "title": "Global Economic Growth Analysis (2000–2023)",
+    "section": "Key Findings",
+    "text": "Key Findings\n\nInvestment drives growth: A 1 percentage point increase in gross capital formation (as % of GDP) is associated with a 0.2-0.3 percentage point increase in GDP growth\nTrade openness matters: Countries with higher export shares tend to experience faster economic growth\nRegional disparities persist: East Asia & Pacific and Europe & Central Asia lead in investment rates, while Sub-Saharan Africa faces significant challenges\nUnemployment burden: Higher unemployment rates consistently correlate with lower GDP growth across all models"
+  },
+  {
+    "objectID": "sources.html",
+    "href": "sources.html",
+    "title": "Data Sources",
+    "section": "",
+    "text": "This analysis relies on the World Bank’s World Development Indicators (WDI), the primary World Bank collection of development indicators compiled from officially recognized international sources."
+  },
+  {
+    "objectID": "sources.html#economic-growth-and-development-indicators",
+    "href": "sources.html#economic-growth-and-development-indicators",
+    "title": "Data Sources",
+    "section": "Economic Growth and Development Indicators",
+    "text": "Economic Growth and Development Indicators\n\n\n\n\n\nVariable.Name\nWDI.Code\nDefinition\nUnits\nData.Source\n\n\n\n\nGDP Growth Rate\nNY.GDP.MKTP.KD.ZG\nAnnual percentage growth rate of GDP at market prices based on constant local currency\nAnnual % change\nNational accounts data\n\n\nGNI per Capita\nNY.GNP.PCAP.CD\nGross national income per capita in current US dollars using Atlas method\nCurrent US$\nWorld Bank national accounts, OECD\n\n\nTrade Openness\nNE.EXP.GNFS.ZS\nExports of goods and services as percentage of GDP\n% of GDP\nNational accounts, balance of payments\n\n\nInvestment Rate\nNE.GDI.TOTL.ZS\nGross capital formation (investment) as percentage of GDP\n% of GDP\nNational accounts data\n\n\nConsumer Price Index\nFP.CPI.TOTL\nConsumer price index reflecting changes in cost to average consumer\nIndex (2010=100)\nInternational Monetary Fund\n\n\nUnemployment Rate\nSL.UEM.TOTL.ZS\nUnemployment as percentage of total labor force (modeled ILO estimate)\n% of labor force\nInternational Labour Organization\n\n\n\n\n\n\nRegional Classifications (7 regions)\nThe analysis uses World Bank regional and income group classifications:\n\nEast Asia & Pacific: China, Indonesia, Thailand, Philippines, etc.\nEurope & Central Asia: Russia, Turkey, Poland, Ukraine, etc.\n\nLatin America & Caribbean: Brazil, Mexico, Argentina, Chile, etc.\nMiddle East & North Africa: Saudi Arabia, Egypt, Iran, Morocco, etc.\nNorth America: United States, Canada\nSouth Asia: India, Pakistan, Bangladesh, Sri Lanka, etc.\nSub-Saharan Africa: Nigeria, South Africa, Kenya, Ghana, etc.\n\n\n\nIncome Classifications (4 groups, FY2024)\n\nLow income: GNI per capita ≤ $1,135\nLower middle income: GNI per capita $1,136 - $4,465\n\nUpper middle income: GNI per capita $4,466 - $13,845\nHigh income: GNI per capita ≥ $13,846"
+  },
+  {
+    "objectID": "sources.html#automated-data-retrieval",
+    "href": "sources.html#automated-data-retrieval",
+    "title": "Data Sources",
+    "section": "Automated Data Retrieval",
+    "text": "Automated Data Retrieval\n\n\nCode\n# R code used for data collection\nlibrary(WDI)\nlibrary(tidyverse)\n\n# Define indicators to download\nindicators &lt;- c(\n  \"NY.GDP.MKTP.KD.ZG\",    # GDP growth (annual %)\n  \"NY.GNP.PCAP.CD\",       # GNI per capita (current US$)  \n  \"NE.EXP.GNFS.ZS\",       # Exports of goods and services (% of GDP)\n  \"NE.GDI.TOTL.ZS\",       # Gross capital formation (% of GDP)\n  \"FP.CPI.TOTL\",          # Consumer prices (index)\n  \"SL.UEM.TOTL.ZS\"        # Unemployment (% of labor force)\n)\n\n# Download panel data (2000-2023)\npanel_data &lt;- WDI(\n  indicator = indicators,\n  start = 2000,\n  end = 2023, \n  extra = TRUE  # Include regional and income classifications\n)\n\n# Download cross-sectional data (2023 only)\ncross_data &lt;- WDI(\n  indicator = indicators,\n  start = 2023,\n  end = 2023,\n  extra = TRUE\n)\n\n\n\nInitial Data Assessment\n\n\nCode\n# Examine data structure and coverage\nglimpse(panel_data)\n\n# Check missing values by indicator\nmissing_summary &lt;- panel_data %&gt;%\n  select(-country, -iso2c, -iso3c, -year, -region, -capital, -longitude, \n         -latitude, -income, -lending) %&gt;%\n  summarise_all(~sum(is.na(.))) %&gt;%\n  pivot_longer(everything(), names_to = \"indicator\", values_to = \"missing_values\")"
   }
 ]
