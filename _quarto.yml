@@ -7,7 +7,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: model.qmd
+        text: Model
+      - href: trends.qmd
+        text: Trends
+      - href: sources.qmd
+        text: Data Sources
+      - href: about.qmd
+        text: About
 
 format:
   html:
@@ -16,6 +23,12 @@ format:
       - brand
     css: styles.css
     toc: true
+    self-contained: true
+    code-fold: true
+    fig-width: 10
+    fig-height: 6
 
-
-
+execute:
+  echo: false
+  warning: false
+  message: false

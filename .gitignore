@@ -1,1 +1,91 @@
+# Quarto project files
 /.quarto/
+_site/
+_book/
+_freeze/
+
+# R files
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.Rproj
+.Rapp.history
+.httr-oauth
+
+# R session Data files
+.RData
+.RDataTmp
+
+# R Environment Variables
+.Renviron
+
+# R packrat files
+packrat/lib*/
+packrat/src/
+
+# R renv files (if using renv)
+renv/
+renv.lock
+
+# Generated data files (optional - you might want to track these)
+# Uncomment the next lines if you don't want to track downloaded data
+# data/*.csv
+# data/*.xlsx
+# data/*.rds
+# analysis_results.RData
+
+# HTML output files (these will be regenerated)
+*.html
+!README.html
+
+# Temporary files
+*~
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Log files
+*.log
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Microsoft Office temporary files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
+# Cache directories
+cache/
+*_cache/
+*_files/
+
+# Plots and figures (if you don't want to version them)
+# figures/
+# plots/
+
+# Backup files
+*.bak
+*.backup
+
+# Large files (GitHub has 100MB limit)
+*.zip
+*.tar.gz
+*.7z
+
+# Personal files
+personal_notes.txt
+todo.txt
+scratch.R

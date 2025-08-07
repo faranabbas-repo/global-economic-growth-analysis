@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Faran Abbas">
-<meta name="dcterms.date" content="2025-08-06">
+<meta name="dcterms.date" content="2025-08-07">
 
-<title>Data Sources and Methodology – Global Economic Growth Analysis (2000-2023)</title>
+<title>Data Sources – Global Economic Growth Analysis (2000-2023)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4088,6 +4088,18 @@ border: 0;
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
+    <a class="nav-link" href="./model.html"> 
+<span class="menu-text">Model</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./trends.html"> 
+<span class="menu-text">Trends</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./sources.html" aria-current="page"> 
+<span class="menu-text">Data Sources</span></a>
+  </li>  
+  <li class="nav-item">
     <a class="nav-link" href="./about.html"> 
 <span class="menu-text">About</span></a>
   </li>  
@@ -4107,60 +4119,22 @@ border: 0;
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-sources" id="toc-data-sources" class="nav-link active" data-scroll-target="#data-sources">Data Sources</a>
-  <ul class="collapse">
-  <li><a href="#primary-data-source-world-bank-world-development-indicators-wdi" id="toc-primary-data-source-world-bank-world-development-indicators-wdi" class="nav-link" data-scroll-target="#primary-data-source-world-bank-world-development-indicators-wdi">Primary Data Source: World Bank World Development Indicators (WDI)</a></li>
-  <li><a href="#data-quality-and-reliability" id="toc-data-quality-and-reliability" class="nav-link" data-scroll-target="#data-quality-and-reliability">Data Quality and Reliability</a></li>
-  </ul></li>
-  <li><a href="#variable-definitions-and-sources" id="toc-variable-definitions-and-sources" class="nav-link" data-scroll-target="#variable-definitions-and-sources">Variable Definitions and Sources</a>
-  <ul class="collapse">
-  <li><a href="#economic-growth-and-development-indicators" id="toc-economic-growth-and-development-indicators" class="nav-link" data-scroll-target="#economic-growth-and-development-indicators">Economic Growth and Development Indicators</a></li>
-  <li><a href="#regional-and-income-classifications" id="toc-regional-and-income-classifications" class="nav-link" data-scroll-target="#regional-and-income-classifications">Regional and Income Classifications</a>
+  <li><a href="#economic-growth-and-development-indicators" id="toc-economic-growth-and-development-indicators" class="nav-link active" data-scroll-target="#economic-growth-and-development-indicators">Economic Growth and Development Indicators</a>
   <ul class="collapse">
   <li><a href="#regional-classifications-7-regions" id="toc-regional-classifications-7-regions" class="nav-link" data-scroll-target="#regional-classifications-7-regions">Regional Classifications (7 regions)</a></li>
   <li><a href="#income-classifications-4-groups-fy2024" id="toc-income-classifications-4-groups-fy2024" class="nav-link" data-scroll-target="#income-classifications-4-groups-fy2024">Income Classifications (4 groups, FY2024)</a></li>
   </ul></li>
-  </ul></li>
   <li><a href="#data-collection-process" id="toc-data-collection-process" class="nav-link" data-scroll-target="#data-collection-process">Data Collection Process</a>
   <ul class="collapse">
-  <li><a href="#automated-data-retrieval" id="toc-automated-data-retrieval" class="nav-link" data-scroll-target="#automated-data-retrieval">Automated Data Retrieval</a></li>
-  <li><a href="#data-processing-steps" id="toc-data-processing-steps" class="nav-link" data-scroll-target="#data-processing-steps">Data Processing Steps</a>
+  <li><a href="#automated-data-retrieval" id="toc-automated-data-retrieval" class="nav-link" data-scroll-target="#automated-data-retrieval">Automated Data Retrieval</a>
   <ul class="collapse">
-  <li><a href="#step-1-initial-data-assessment" id="toc-step-1-initial-data-assessment" class="nav-link" data-scroll-target="#step-1-initial-data-assessment">Step 1: Initial Data Assessment</a></li>
-  <li><a href="#step-2-data-cleaning-and-transformation" id="toc-step-2-data-cleaning-and-transformation" class="nav-link" data-scroll-target="#step-2-data-cleaning-and-transformation">Step 2: Data Cleaning and Transformation</a></li>
-  <li><a href="#step-3-quality-assurance" id="toc-step-3-quality-assurance" class="nav-link" data-scroll-target="#step-3-quality-assurance">Step 3: Quality Assurance</a></li>
+  <li><a href="#initial-data-assessment" id="toc-initial-data-assessment" class="nav-link" data-scroll-target="#initial-data-assessment">Initial Data Assessment</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#data-limitations-and-considerations" id="toc-data-limitations-and-considerations" class="nav-link" data-scroll-target="#data-limitations-and-considerations">Data Limitations and Considerations</a>
-  <ul class="collapse">
-  <li><a href="#coverage-limitations" id="toc-coverage-limitations" class="nav-link" data-scroll-target="#coverage-limitations">Coverage Limitations</a></li>
-  <li><a href="#known-data-limitations" id="toc-known-data-limitations" class="nav-link" data-scroll-target="#known-data-limitations">Known Data Limitations</a>
-  <ul class="collapse">
-  <li><a href="#missing-data-patterns" id="toc-missing-data-patterns" class="nav-link" data-scroll-target="#missing-data-patterns">Missing Data Patterns</a></li>
-  <li><a href="#measurement-issues" id="toc-measurement-issues" class="nav-link" data-scroll-target="#measurement-issues">Measurement Issues</a></li>
-  <li><a href="#country-specific-considerations" id="toc-country-specific-considerations" class="nav-link" data-scroll-target="#country-specific-considerations">Country-Specific Considerations</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#methodological-choices" id="toc-methodological-choices" class="nav-link" data-scroll-target="#methodological-choices">Methodological Choices</a>
-  <ul class="collapse">
-  <li><a href="#model-selection-rationale" id="toc-model-selection-rationale" class="nav-link" data-scroll-target="#model-selection-rationale">Model Selection Rationale</a>
+  <li><a href="#data-coverage-by-region-and-time-period" id="toc-data-coverage-by-region-and-time-period" class="nav-link" data-scroll-target="#data-coverage-by-region-and-time-period">Data Coverage by Region and Time Period</a>
   <ul class="collapse">
   <li><a href="#cross-sectional-vs.-panel-analysis" id="toc-cross-sectional-vs.-panel-analysis" class="nav-link" data-scroll-target="#cross-sectional-vs.-panel-analysis">Cross-Sectional vs. Panel Analysis</a></li>
   <li><a href="#variable-transformations" id="toc-variable-transformations" class="nav-link" data-scroll-target="#variable-transformations">Variable Transformations</a></li>
-  </ul></li>
-  <li><a href="#statistical-considerations" id="toc-statistical-considerations" class="nav-link" data-scroll-target="#statistical-considerations">Statistical Considerations</a>
-  <ul class="collapse">
-  <li><a href="#sample-selection" id="toc-sample-selection" class="nav-link" data-scroll-target="#sample-selection">Sample Selection</a></li>
-  <li><a href="#econometric-assumptions" id="toc-econometric-assumptions" class="nav-link" data-scroll-target="#econometric-assumptions">Econometric Assumptions</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#data-access-and-reproducibility" id="toc-data-access-and-reproducibility" class="nav-link" data-scroll-target="#data-access-and-reproducibility">Data Access and Reproducibility</a>
-  <ul class="collapse">
-  <li><a href="#reproducible-research-framework" id="toc-reproducible-research-framework" class="nav-link" data-scroll-target="#reproducible-research-framework">Reproducible Research Framework</a></li>
-  <li><a href="#data-access-information" id="toc-data-access-information" class="nav-link" data-scroll-target="#data-access-information">Data Access Information</a>
-  <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -4170,8 +4144,7 @@ border: 0;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Sources and Methodology</h1>
-<p class="subtitle lead">Comprehensive Guide to Data Collection, Processing, and Analysis</p>
+<h1 class="title">Data Sources</h1>
 </div>
 
 
@@ -4188,7 +4161,7 @@ border: 0;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 6, 2025</p>
+      <p class="date">August 7, 2025</p>
     </div>
   </div>
   
@@ -4200,41 +4173,20 @@ border: 0;
 </header>
 
 
-<section id="data-sources" class="level1">
-<h1>Data Sources</h1>
-<section id="primary-data-source-world-bank-world-development-indicators-wdi" class="level2">
-<h2 class="anchored" data-anchor-id="primary-data-source-world-bank-world-development-indicators-wdi">Primary Data Source: World Bank World Development Indicators (WDI)</h2>
-<p>This analysis relies on the <strong>World Bank’s World Development Indicators (WDI)</strong>, the primary World Bank collection of development indicators compiled from officially recognized international sources. The WDI presents the most current and accurate global development data available and includes national, regional, and global estimates.</p>
+<p>This analysis relies on the <strong>World Bank’s World Development Indicators (WDI)</strong>, the primary World Bank collection of development indicators compiled from officially recognized international sources.</p>
 <ul>
 <li><strong>Database</strong>: World Development Indicators</li>
 <li><strong>Publisher</strong>: The World Bank Group</li>
-<li><strong>Access Method</strong>: WDI R package and direct API access</li>
-<li><strong>Data Collection Period</strong>: July 2025</li>
+<li><strong>Access Method</strong>: WDI R package</li>
 <li><strong>Coverage</strong>: 217 economies, 1,400+ indicators</li>
-<li><strong>Time Span</strong>: 1960-2023 (analysis focuses on 2000-2023)</li>
-</ul>
-</section>
-<section id="data-quality-and-reliability" class="level2">
-<h2 class="anchored" data-anchor-id="data-quality-and-reliability">Data Quality and Reliability</h2>
-<p>The World Bank WDI is widely regarded as the gold standard for cross-country economic data because:</p>
-<ul>
-<li><strong>Official Sources</strong>: Data compiled from national statistical offices and international organizations</li>
-<li><strong>Standardized Methodology</strong>: Consistent definitions and measurement approaches across countries</li>
-<li><strong>Regular Updates</strong>: Quarterly updates with annual comprehensive revisions</li>
-<li><strong>Extensive Coverage</strong>: Broad geographical and temporal coverage</li>
-<li><strong>Quality Controls</strong>: Rigorous validation and cross-checking procedures</li>
+<li><strong>Time Span</strong>: 2000-2023</li>
 </ul>
 <hr>
-</section>
-</section>
-<section id="variable-definitions-and-sources" class="level1">
-<h1>Variable Definitions and Sources</h1>
 <section id="economic-growth-and-development-indicators" class="level2">
 <h2 class="anchored" data-anchor-id="economic-growth-and-development-indicators">Economic Growth and Development Indicators</h2>
-<div class="cell" data-tbl-cap="Detailed Variable Definitions and WDI Codes">
+<div class="cell" data-tbl-cap>
 <div class="cell-output-display">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Detailed Variable Definitions and WDI Codes</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Variable.Name</th>
@@ -4291,12 +4243,9 @@ border: 0;
 </table>
 </div>
 </div>
-</section>
-<section id="regional-and-income-classifications" class="level2">
-<h2 class="anchored" data-anchor-id="regional-and-income-classifications">Regional and Income Classifications</h2>
-<p>The analysis uses World Bank regional and income group classifications:</p>
 <section id="regional-classifications-7-regions" class="level3">
 <h3 class="anchored" data-anchor-id="regional-classifications-7-regions">Regional Classifications (7 regions)</h3>
+<p>The analysis uses World Bank regional and income group classifications:</p>
 <ul>
 <li><strong>East Asia &amp; Pacific</strong>: China, Indonesia, Thailand, Philippines, etc.</li>
 <li><strong>Europe &amp; Central Asia</strong>: Russia, Turkey, Poland, Ukraine, etc.<br>
@@ -4318,7 +4267,6 @@ border: 0;
 <li><strong>High income</strong>: GNI per capita ≥ $13,846</li>
 </ul>
 <hr>
-</section>
 </section>
 </section>
 <section id="data-collection-process" class="level1">
@@ -4359,11 +4307,8 @@ border: 0;
 <span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-</section>
-<section id="data-processing-steps" class="level2">
-<h2 class="anchored" data-anchor-id="data-processing-steps">Data Processing Steps</h2>
-<section id="step-1-initial-data-assessment" class="level3">
-<h3 class="anchored" data-anchor-id="step-1-initial-data-assessment">Step 1: Initial Data Assessment</h3>
+<section id="initial-data-assessment" class="level3">
+<h3 class="anchored" data-anchor-id="initial-data-assessment">Initial Data Assessment</h3>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -4379,36 +4324,13 @@ border: 0;
 </details>
 </div>
 </section>
-<section id="step-2-data-cleaning-and-transformation" class="level3">
-<h3 class="anchored" data-anchor-id="step-2-data-cleaning-and-transformation">Step 2: Data Cleaning and Transformation</h3>
-<ul>
-<li><strong>Variable Renaming</strong>: WDI codes renamed to intuitive variable names</li>
-<li><strong>Missing Value Treatment</strong>: Complete case analysis (listwise deletion)</li>
-<li><strong>Outlier Detection</strong>: Examined extreme values for economic plausibility</li>
-<li><strong>Derived Variables</strong>: Created log transformations and inflation rates</li>
-<li><strong>Regional Filtering</strong>: Removed aggregated regions, keeping only countries</li>
-</ul>
-</section>
-<section id="step-3-quality-assurance" class="level3">
-<h3 class="anchored" data-anchor-id="step-3-quality-assurance">Step 3: Quality Assurance</h3>
-<ul>
-<li><strong>Range Checks</strong>: Verified variables within expected ranges</li>
-<li><strong>Consistency Checks</strong>: Cross-validated related indicators</li>
-<li><strong>Temporal Validation</strong>: Checked for implausible year-to-year changes</li>
-<li><strong>Cross-Country Validation</strong>: Compared values across similar countries</li>
-</ul>
-<hr>
 </section>
 </section>
-</section>
-<section id="data-limitations-and-considerations" class="level1">
-<h1>Data Limitations and Considerations</h1>
-<section id="coverage-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="coverage-limitations">Coverage Limitations</h2>
-<div class="cell" data-tbl-cap="Data Coverage by Region and Time Period">
+<section id="data-coverage-by-region-and-time-period" class="level1">
+<h1>Data Coverage by Region and Time Period</h1>
+<div class="cell" data-tbl-cap>
 <div class="cell-output-display">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
-<caption>Data Coverage by Region and Time Period</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">region</th>
@@ -4480,43 +4402,6 @@ border: 0;
 </table>
 </div>
 </div>
-</section>
-<section id="known-data-limitations" class="level2">
-<h2 class="anchored" data-anchor-id="known-data-limitations">Known Data Limitations</h2>
-<section id="missing-data-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="missing-data-patterns">Missing Data Patterns</h3>
-<ul>
-<li><strong>Systematic Missing</strong>: Some countries lack data for specific indicators (especially unemployment)</li>
-<li><strong>Temporal Gaps</strong>: Data availability varies by country development level</li>
-<li><strong>Indicator-Specific</strong>: Investment and trade data more complete than unemployment data</li>
-</ul>
-</section>
-<section id="measurement-issues" class="level3">
-<h3 class="anchored" data-anchor-id="measurement-issues">Measurement Issues</h3>
-<ul>
-<li><strong>National Accounts Revisions</strong>: Historical GDP data subject to periodic revisions</li>
-<li><strong>Exchange Rate Effects</strong>: Dollar-denominated variables affected by currency fluctuations<br>
-</li>
-<li><strong>Informal Economy</strong>: GDP measures may underestimate economic activity in developing countries</li>
-<li><strong>Definition Changes</strong>: Some indicators have evolved over time</li>
-</ul>
-</section>
-<section id="country-specific-considerations" class="level3">
-<h3 class="anchored" data-anchor-id="country-specific-considerations">Country-Specific Considerations</h3>
-<ul>
-<li><strong>Small Island States</strong>: High volatility due to economic structure</li>
-<li><strong>Resource-Rich Countries</strong>: Growth patterns influenced by commodity cycles</li>
-<li><strong>Post-Conflict Countries</strong>: Data quality may be compromised during transition periods</li>
-<li><strong>Federal Systems</strong>: Sub-national variation may not be captured</li>
-</ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="methodological-choices" class="level1">
-<h1>Methodological Choices</h1>
-<section id="model-selection-rationale" class="level2">
-<h2 class="anchored" data-anchor-id="model-selection-rationale">Model Selection Rationale</h2>
 <section id="cross-sectional-vs.-panel-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="cross-sectional-vs.-panel-analysis">Cross-Sectional vs. Panel Analysis</h3>
 <ul>
@@ -4541,50 +4426,8 @@ border: 0;
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p><strong>Rationale for Transformations:</strong> - <strong>Log Income</strong>: Addresses skewness and allows for percentage interpretation - <strong>Inflation Rate</strong>: More intuitive than price index levels - <strong>Growth Rates</strong>: Already in percentage form, no transformation needed</p>
-</section>
-</section>
-<section id="statistical-considerations" class="level2">
-<h2 class="anchored" data-anchor-id="statistical-considerations">Statistical Considerations</h2>
-<section id="sample-selection" class="level3">
-<h3 class="anchored" data-anchor-id="sample-selection">Sample Selection</h3>
-<ul>
-<li><strong>Balanced vs. Unbalanced</strong>: Uses unbalanced panel to maximize sample size</li>
-<li><strong>Complete Cases</strong>: Requires non-missing values for all variables in analysis</li>
-<li><strong>Time Period</strong>: 2000-2023 chosen to capture recent development patterns</li>
-</ul>
-</section>
-<section id="econometric-assumptions" class="level3">
-<h3 class="anchored" data-anchor-id="econometric-assumptions">Econometric Assumptions</h3>
-<ul>
-<li><strong>Linearity</strong>: Relationships assumed linear after transformations</li>
-<li><strong>Exogeneity</strong>: Fixed effects help address endogeneity concerns</li>
-<li><strong>Homoscedasticity</strong>: Robust standard errors used where appropriate</li>
-<li><strong>Independence</strong>: Country-clustered standard errors account for within-country correlation</li>
-</ul>
-<hr>
-</section>
-</section>
-</section>
-<section id="data-access-and-reproducibility" class="level1">
-<h1>Data Access and Reproducibility</h1>
-<section id="reproducible-research-framework" class="level2">
-<h2 class="anchored" data-anchor-id="reproducible-research-framework">Reproducible Research Framework</h2>
-<p>This analysis follows reproducible research principles:</p>
-<ul>
-<li><strong>Version Control</strong>: All code available on GitHub</li>
-<li><strong>Automated Pipeline</strong>: Data download to final results fully scripted</li>
-<li><strong>Documentation</strong>: Comprehensive documentation of all steps</li>
-<li><strong>Environment</strong>: R session info and package versions recorded</li>
-</ul>
-</section>
-<section id="data-access-information" class="level2">
-<h2 class="anchored" data-anchor-id="data-access-information">Data Access Information</h2>
-<section id="section" class="level3">
-<h3 class="anchored" data-anchor-id="section"></h3>
 
 
-</section>
 </section>
 </section>
 

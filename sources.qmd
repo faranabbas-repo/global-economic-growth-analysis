@@ -1,6 +1,5 @@
 ---
-title: "Data Sources and Methodology"
-subtitle: "Comprehensive Guide to Data Collection, Processing, and Analysis"
+title: "Data Sources"
 format: 
   html: 
     theme: cosmo
@@ -9,7 +8,7 @@ format:
     self-contained: true
     code-fold: true
 author: "Faran Abbas"
-date: "2025-08-06"
+date: "2025-08-07"
 execute: 
   echo: false
   warning: false
@@ -28,37 +27,21 @@ if(file.exists("analysis_results.RData")) {
 }
 ```
 
-# Data Sources
 
-## Primary Data Source: World Bank World Development Indicators (WDI)
-
-This analysis relies on the **World Bank's World Development Indicators (WDI)**, the primary World Bank collection of development indicators compiled from officially recognized international sources. The WDI presents the most current and accurate global development data available and includes national, regional, and global estimates.
+This analysis relies on the **World Bank's World Development Indicators (WDI)**, the primary World Bank collection of development indicators compiled from officially recognized international sources.
 
 - **Database**: World Development Indicators 
 - **Publisher**: The World Bank Group
-- **Access Method**: WDI R package and direct API access
-- **Data Collection Period**: July 2025
+- **Access Method**: WDI R package
 - **Coverage**: 217 economies, 1,400+ indicators
-- **Time Span**: 1960-2023 (analysis focuses on 2000-2023)
-
-## Data Quality and Reliability
-
-The World Bank WDI is widely regarded as the gold standard for cross-country economic data because:
-
-- **Official Sources**: Data compiled from national statistical offices and international organizations
-- **Standardized Methodology**: Consistent definitions and measurement approaches across countries
-- **Regular Updates**: Quarterly updates with annual comprehensive revisions
-- **Extensive Coverage**: Broad geographical and temporal coverage
-- **Quality Controls**: Rigorous validation and cross-checking procedures
+- **Time Span**: 2000-2023
 
 ---
-
-# Variable Definitions and Sources
 
 ## Economic Growth and Development Indicators
 
 ```{r variable-table}
-#| tbl-cap: "Detailed Variable Definitions and WDI Codes"
+#| tbl-cap: ""
 
 variables_df <- data.frame(
   `Variable Name` = c(
@@ -109,11 +92,12 @@ kable(variables_df) %>%
   column_spec(5, width = "3cm")
 ```
 
-## Regional and Income Classifications
+
+
+### Regional Classifications (7 regions)
 
 The analysis uses World Bank regional and income group classifications:
 
-### Regional Classifications (7 regions)
 - **East Asia & Pacific**: China, Indonesia, Thailand, Philippines, etc.
 - **Europe & Central Asia**: Russia, Turkey, Poland, Ukraine, etc.  
 - **Latin America & Caribbean**: Brazil, Mexico, Argentina, Chile, etc.
@@ -166,9 +150,7 @@ cross_data <- WDI(
 )
 ```
 
-## Data Processing Steps
-
-### Step 1: Initial Data Assessment
+### Initial Data Assessment
 ```{r data-assessment}
 #| echo: true
 #| eval: false
@@ -184,27 +166,10 @@ missing_summary <- panel_data %>%
   pivot_longer(everything(), names_to = "indicator", values_to = "missing_values")
 ```
 
-### Step 2: Data Cleaning and Transformation
-- **Variable Renaming**: WDI codes renamed to intuitive variable names
-- **Missing Value Treatment**: Complete case analysis (listwise deletion)
-- **Outlier Detection**: Examined extreme values for economic plausibility
-- **Derived Variables**: Created log transformations and inflation rates
-- **Regional Filtering**: Removed aggregated regions, keeping only countries
-
-### Step 3: Quality Assurance
-- **Range Checks**: Verified variables within expected ranges
-- **Consistency Checks**: Cross-validated related indicators
-- **Temporal Validation**: Checked for implausible year-to-year changes
-- **Cross-Country Validation**: Compared values across similar countries
-
----
-
-# Data Limitations and Considerations
-
-## Coverage Limitations
+# Data Coverage by Region and Time Period
 
 ```{r coverage-analysis}
-#| tbl-cap: "Data Coverage by Region and Time Period"
+#| tbl-cap: ""
 
 if(exists("clean_panel_data")) {
   coverage_stats <- clean_panel_data %>%
@@ -237,31 +202,6 @@ if(exists("clean_panel_data")) {
 }
 ```
 
-## Known Data Limitations
-
-### Missing Data Patterns
-- **Systematic Missing**: Some countries lack data for specific indicators (especially unemployment)
-- **Temporal Gaps**: Data availability varies by country development level
-- **Indicator-Specific**: Investment and trade data more complete than unemployment data
-
-### Measurement Issues
-- **National Accounts Revisions**: Historical GDP data subject to periodic revisions
-- **Exchange Rate Effects**: Dollar-denominated variables affected by currency fluctuations  
-- **Informal Economy**: GDP measures may underestimate economic activity in developing countries
-- **Definition Changes**: Some indicators have evolved over time
-
-### Country-Specific Considerations
-- **Small Island States**: High volatility due to economic structure
-- **Resource-Rich Countries**: Growth patterns influenced by commodity cycles
-- **Post-Conflict Countries**: Data quality may be compromised during transition periods
-- **Federal Systems**: Sub-national variation may not be captured
-
----
-
-# Methodological Choices
-
-## Model Selection Rationale
-
 ### Cross-Sectional vs. Panel Analysis
 - **Cross-sectional (2023)**: Captures current relationships and country differences
 - **Panel data (2000-2023)**: Controls for time-invariant country characteristics and global trends
@@ -282,38 +222,3 @@ model_data <- model_data %>%
   mutate(inflation_rate = (cpi / lag(cpi, order_by = year) - 1) * 100) %>%
   ungroup()
 ```
-
-**Rationale for Transformations:**
-- **Log Income**: Addresses skewness and allows for percentage interpretation
-- **Inflation Rate**: More intuitive than price index levels
-- **Growth Rates**: Already in percentage form, no transformation needed
-
-## Statistical Considerations
-
-### Sample Selection
-- **Balanced vs. Unbalanced**: Uses unbalanced panel to maximize sample size
-- **Complete Cases**: Requires non-missing values for all variables in analysis
-- **Time Period**: 2000-2023 chosen to capture recent development patterns
-
-### Econometric Assumptions
-- **Linearity**: Relationships assumed linear after transformations
-- **Exogeneity**: Fixed effects help address endogeneity concerns
-- **Homoscedasticity**: Robust standard errors used where appropriate
-- **Independence**: Country-clustered standard errors account for within-country correlation
-
----
-
-# Data Access and Reproducibility
-
-## Reproducible Research Framework
-
-This analysis follows reproducible research principles:
-
-- **Version Control**: All code available on GitHub
-- **Automated Pipeline**: Data download to final results fully scripted
-- **Documentation**: Comprehensive documentation of all steps
-- **Environment**: R session info and package versions recorded
-
-## Data Access Information
-
-###

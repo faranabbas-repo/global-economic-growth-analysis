@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this site
+I am Faran Abbas, a graduate student in World Economy at Shandong University. You can view my work on [GitHub](https://github.com/faranabbas-repo) or contact me at [faranabbas@hotmail.com].
+
+This project analyzes the drivers of economic growth across more than 180 countries from 2000–2023, using comprehensive data from the World Bank's World Development Indicators. Through both cross-sectional and panel data methodologies, the analysis identifies investment (gross capital formation) as the most significant predictor of GDP growth, alongside trade openness and labor market conditions. You can view the repository [here](https://github.com/faranabbas-repo/global-economic-growth-analysis).
+
+This project was created as a part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info/) with the help of WDI datasets and AI chat tools..

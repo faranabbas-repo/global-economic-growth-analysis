@@ -379,4 +379,390 @@ crisis_analysis <- map_dfr(crisis_periods, function(years) {
     )
 }, .id = "period")
 
-#
+# Reshape for better display
+crisis_display <- crisis_analysis %>%
+  select(period, region, avg_gdp_growth) %>%
+  pivot_wider(names_from = period, values_from = avg_gdp_growth) %>%
+  arrange(region)
+
+kable(crisis_display, digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  add_header_above(c(" " = 1, "Average GDP Growth Rate (%)" = 6)) %>%
+  column_spec(3, background = "#ffcccc") %>%  # Financial Crisis
+  column_spec(6, background = "#ffcccc")      # COVID-19
+```
+
+**Crisis Impact Observations:**
+- **Financial Crisis (2008-2009)**: All regions experienced significant slowdown, with Europe & Central Asia hit hardest
+- **COVID-19 (2020-2021)**: More uniform global impact, but faster recovery than 2008-2009
+- **Sub-Saharan Africa**: Shows resilience during crises but consistently lower growth during stable periods
+- **East Asia & Pacific**: Demonstrates strong recovery capacity after both crises
+
+---
+
+# Country-Level Success Stories and Challenges
+
+## Investment Leaders and Their Outcomes
+
+```{r investment-leaders}
+#| fig-cap: "Investment Champions: Countries with Consistently High Investment Rates"
+#| fig-height: 10
+
+# Identify countries with consistently high investment
+investment_leaders <- clean_panel_data %>%
+  filter(year >= 2010) %>%  # Focus on recent decade
+  group_by(country, region) %>%
+  summarise(
+    avg_investment = mean(capital_formation, na.rm = TRUE),
+    avg_growth = mean(gdp_growth, na.rm = TRUE),
+    years_data = n(),
+    .groups = "drop"
+  ) %>%
+  filter(years_data >= 10, avg_investment >= 25) %>%  # High investors with sufficient data
+  arrange(desc(avg_investment)) %>%
+  slice_head(n = 20)
+
+# Plot investment leaders
+p5 <- ggplot(investment_leaders, aes(x = avg_investment, y = avg_growth)) +
+  geom_point(aes(color = region, size = avg_investment), alpha = 0.7) +
+  geom_text(aes(label = country), vjust = -0.5, size = 3, check_overlap = TRUE) +
+  scale_color_viridis_d() +
+  scale_size_continuous(range = c(3, 8), guide = "none") +
+  labs(
+    title = "High Investment Countries and Their Growth Performance (2010-2023)",
+    subtitle = "Countries with average investment ≥25% of GDP",
+    x = "Average Investment Rate (% of GDP)",
+    y = "Average GDP Growth Rate (%)",
+    color = "Region",
+    caption = "Bubble size indicates investment level\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p5
+```
+
+## Trade-Growth Success Stories
+
+```{r trade-success}
+#| fig-cap: "Export-Led Growth: Countries Benefiting from Trade Openness"
+#| layout-ncol: 2
+#| fig-subcap:
+#|   - "Trade Openness and Growth Performance"  
+#|   - "Regional Export Champions"
+
+# Trade and growth relationship for high performers
+high_trade_countries <- model_data %>%
+  filter(exports_gdp >= 40) %>%  # Highly trade-oriented countries
+  arrange(desc(gdp_growth))
+
+p6a <- ggplot(high_trade_countries, aes(x = exports_gdp, y = gdp_growth)) +
+  geom_point(aes(color = region, size = gni_per_capita), alpha = 0.7) +
+  geom_text(aes(label = country), vjust = -0.5, size = 2.5, check_overlap = TRUE) +
+  scale_color_viridis_d() +
+  scale_size_continuous(name = "Income Level", 
+                       labels = function(x) paste0("$", round(x/1000, 0), "K"),
+                       range = c(3, 8)) +
+  labs(
+    title = "High Trade-Oriented Countries",
+    subtitle = "Countries with exports ≥40% of GDP",
+    x = "Exports (% of GDP)",
+    y = "GDP Growth Rate (%)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  guides(size = "none")
+
+# Regional export performance
+regional_trade_perf <- model_data %>%
+  group_by(region) %>%
+  summarise(
+    countries = n(),
+    avg_exports = mean(exports_gdp, na.rm = TRUE),
+    avg_growth = mean(gdp_growth, na.rm = TRUE),
+    high_exporters = sum(exports_gdp >= 40, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(pct_high_exporters = round(100 * high_exporters / countries, 1))
+
+p6b <- ggplot(regional_trade_perf, aes(x = avg_exports, y = avg_growth)) +
+  geom_point(aes(size = pct_high_exporters, color = region), alpha = 0.8) +
+  geom_text(aes(label = str_wrap(region, 15)), vjust = -0.5, size = 3) +
+  scale_color_viridis_d() +
+  scale_size_continuous(name = "% High Exporters", range = c(4, 12)) +
+  labs(
+    title = "Regional Trade Performance",
+    x = "Average Exports (% of GDP)",
+    y = "Average GDP Growth (%)",
+    caption = "Bubble size shows % of countries with exports ≥40% GDP"
+  ) +
+  theme_minimal() +
+  guides(color = "none")
+
+p6a
+p6b
+```
+
+---
+
+# Convergence Analysis
+
+## Income Convergence Patterns
+
+```{r convergence-analysis}
+#| fig-cap: "Testing Economic Convergence: Initial Income vs. Growth Performance"
+#| fig-height: 8
+
+# Calculate initial income (2000) and average growth (2000-2023) for convergence test
+convergence_data <- clean_panel_data %>%
+  group_by(country, region) %>%
+  summarise(
+    initial_income = first(gni_per_capita[year == min(year)], na_rm = TRUE),
+    initial_year = min(year),
+    final_income = last(gni_per_capita[year == max(year)], na_rm = TRUE),
+    avg_growth = mean(gdp_growth, na.rm = TRUE),
+    years_data = n(),
+    .groups = "drop"
+  ) %>%
+  filter(years_data >= 15, !is.na(initial_income), !is.na(avg_growth)) %>%
+  mutate(
+    log_initial_income = log(initial_income),
+    income_group = case_when(
+      initial_income < 1000 ~ "Low Income",
+      initial_income < 5000 ~ "Lower-Middle Income", 
+      initial_income < 15000 ~ "Upper-Middle Income",
+      TRUE ~ "High Income"
+    )
+  )
+
+# Convergence plot
+p7 <- ggplot(convergence_data, aes(x = log_initial_income, y = avg_growth)) +
+  geom_point(aes(color = region, size = final_income), alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "darkblue", alpha = 0.3) +
+  scale_color_viridis_d() +
+  scale_size_continuous(name = "2023 Income", 
+                       labels = function(x) paste0("$", round(x/1000, 0), "K"),
+                       range = c(2, 8)) +
+  labs(
+    title = "Economic Convergence: Do Poorer Countries Grow Faster?",
+    subtitle = "Initial income (≈2000) vs. average growth rate (2000-2023)",
+    x = "Log Initial GNI per Capita",
+    y = "Average GDP Growth Rate (%)",
+    color = "Region",
+    caption = "Negative slope would indicate convergence\nBubble size shows current income level"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p7
+```
+
+```{r convergence-stats}
+#| tbl-cap: "Convergence Analysis by Income Group"
+
+conv_stats <- convergence_data %>%
+  group_by(income_group) %>%
+  summarise(
+    Countries = n(),
+    `Avg Initial Income` = round(mean(initial_income, na.rm = TRUE), 0),
+    `Avg Growth Rate` = round(mean(avg_growth, na.rm = TRUE), 2),
+    `Median Growth Rate` = round(median(avg_growth, na.rm = TRUE), 2),
+    `Growth Std Dev` = round(sd(avg_growth, na.rm = TRUE), 2),
+    `Top Quartile Growth` = round(quantile(avg_growth, 0.75, na.rm = TRUE), 2),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(`Avg Initial Income`))
+
+kable(conv_stats, format.args = list(big.mark = ",")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  add_header_above(c(" " = 2, "Income (US$)" = 1, "Growth Performance (%)" = 4))
+```
+
+**Convergence Findings:**
+- **Conditional convergence** is evident: poorer countries do tend to grow faster on average
+- However, there's **high variation** within income groups
+- **Middle-income countries** show particularly strong growth performance
+- **High-income countries** have lower but more stable growth rates
+
+---
+
+# Regional Development Challenges and Opportunities
+
+## Sub-Saharan Africa: The Investment Paradox
+
+```{r africa-analysis}
+#| fig-cap: "Sub-Saharan Africa: High Investment, Variable Returns"
+#| layout-ncol: 2
+#| fig-subcap:
+#|   - "Investment vs. Growth in African Countries"
+#|   - "Comparison with Other Regions"
+
+# Focus on Sub-Saharan Africa
+africa_data <- model_data %>%
+  filter(region == "Sub-Saharan Africa")
+
+p8a <- ggplot(africa_data, aes(x = capital_formation, y = gdp_growth)) +
+  geom_point(aes(size = gni_per_capita), alpha = 0.7, color = "darkorange") +
+  geom_smooth(method = "lm", se = TRUE, color = "darkblue") +
+  geom_text(aes(label = country), size = 2.5, vjust = -0.5, check_overlap = TRUE) +
+  scale_size_continuous(name = "Income", 
+                       labels = function(x) paste0("$", round(x/1000, 1), "K"),
+                       range = c(2, 6)) +
+  labs(
+    title = "Sub-Saharan Africa",
+    x = "Investment (% of GDP)",
+    y = "GDP Growth (%)",
+    caption = "Bubble size = income level"
+  ) +
+  theme_minimal()
+
+# Compare Africa with other regions
+regional_comparison <- model_data %>%
+  group_by(region) %>%
+  summarise(
+    avg_investment = mean(capital_formation, na.rm = TRUE),
+    avg_growth = mean(gdp_growth, na.rm = TRUE),
+    investment_growth_cor = cor(capital_formation, gdp_growth, use = "complete.obs"),
+    .groups = "drop"
+  )
+
+p8b <- ggplot(regional_comparison, aes(x = avg_investment, y = avg_growth)) +
+  geom_point(aes(size = abs(investment_growth_cor), color = investment_growth_cor > 0.3), 
+             alpha = 0.8) +
+  geom_text(aes(label = str_wrap(region, 12)), vjust = -0.5, size = 3) +
+  scale_color_manual(name = "Strong Investment-\nGrowth Correlation", 
+                     values = c("FALSE" = "coral", "TRUE" = "darkgreen"),
+                     labels = c("Weak", "Strong")) +
+  scale_size_continuous(name = "Correlation\nStrength", range = c(4, 10)) +
+  labs(
+    title = "Regional Investment Effectiveness",
+    x = "Average Investment (% GDP)",
+    y = "Average GDP Growth (%)",
+    caption = "Green = strong investment-growth correlation"
+  ) +
+  theme_minimal()
+
+p8a
+p8b
+```
+
+## East Asia & Pacific: The Growth Champions
+
+```{r east-asia-success}
+#| fig-cap: "East Asia & Pacific Success Factors"
+#| fig-height: 6
+
+# East Asia analysis
+east_asia_time <- clean_panel_data %>%
+  filter(region == "East Asia & Pacific", year >= 2000) %>%
+  group_by(year) %>%
+  summarise(
+    avg_growth = mean(gdp_growth, na.rm = TRUE),
+    avg_investment = mean(capital_formation, na.rm = TRUE),
+    avg_exports = mean(exports_gdp, na.rm = TRUE),
+    countries = n(),
+    .groups = "drop"
+  )
+
+# Create combined plot
+p9 <- east_asia_time %>%
+  select(year, avg_growth, avg_investment, avg_exports) %>%
+  pivot_longer(cols = -year, names_to = "indicator", values_to = "value") %>%
+  mutate(
+    indicator = case_when(
+      indicator == "avg_growth" ~ "GDP Growth (%)",
+      indicator == "avg_investment" ~ "Investment (% GDP)",
+      indicator == "avg_exports" ~ "Exports (% GDP)"
+    )
+  ) %>%
+  ggplot(aes(x = year, y = value, color = indicator)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  facet_wrap(~indicator, scales = "free_y", ncol = 1) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  scale_color_viridis_d() +
+  labs(
+    title = "East Asia & Pacific: Sustained High Performance",
+    subtitle = "Regional averages over time",
+    x = "Year",
+    y = "Value",
+    caption = "Source: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(size = 11, face = "bold")
+  )
+
+p9
+```
+
+---
+
+# Policy Implications by Region
+
+## Regional Development Strategies
+
+```{r policy-matrix}
+#| tbl-cap: "Regional Development Priorities Based on Economic Indicators"
+
+policy_priorities <- regional_summary %>%
+  mutate(
+    `Investment Priority` = case_when(
+      avg_investment < 20 ~ "High - Boost capital formation",
+      avg_investment < 25 ~ "Medium - Improve efficiency", 
+      TRUE ~ "Low - Maintain levels"
+    ),
+    `Trade Priority` = case_when(
+      avg_exports < 25 ~ "High - Enhance competitiveness",
+      avg_exports < 40 ~ "Medium - Diversify exports",
+      TRUE ~ "Low - Sustain performance"
+    ),
+    `Labor Priority` = case_when(
+      avg_unemployment > 8 ~ "High - Job creation urgently needed",
+      avg_unemployment > 5 ~ "Medium - Skills and matching",
+      TRUE ~ "Low - Maintain flexibility"
+    ),
+    `Development Stage` = case_when(
+      avg_gni_per_capita < 5000 ~ "Low-income: Basic infrastructure",
+      avg_gni_per_capita < 15000 ~ "Middle-income: Technology & institutions",
+      TRUE ~ "High-income: Innovation & services"
+    )
+  ) %>%
+  select(region, `Development Stage`, `Investment Priority`, `Trade Priority`, `Labor Priority`)
+
+kable(policy_priorities, 
+      col.names = c("Region", "Development Stage", "Investment", "Trade", "Labor")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  add_header_above(c(" " = 2, "Policy Priorities" = 3)) %>%
+  column_spec(2, width = "3cm") %>%
+  column_spec(3:5, width = "2.5cm")
+```
+
+---
+
+# Conclusions
+
+## Key Regional Insights
+
+1. **Investment Remains King**: Across all regions, countries with higher investment rates tend to achieve better growth outcomes, but the relationship varies in strength
+
+2. **Trade Integration Benefits**: Regions with higher trade openness generally perform better, but the relationship depends on export composition and competitiveness
+
+3. **Regional Convergence**: There's evidence of convergence within regions, with poorer countries growing faster, but significant variation remains
+
+4. **Crisis Resilience**: Regions with more diversified economies and stronger institutions show better crisis recovery
+
+## Strategic Recommendations by Region
+
+- **Sub-Saharan Africa**: Focus on investment quality and institutional capacity building
+- **East Asia & Pacific**: Maintain high investment while transitioning to innovation-driven growth  
+- **Europe & Central Asia**: Address unemployment through labor market reforms
+- **Latin America & Caribbean**: Enhance trade competitiveness and reduce volatility
+- **Middle East & North Africa**: Diversify beyond natural resources, boost private investment
+- **South Asia**: Scale up infrastructure investment while managing macroeconomic stability
+- **North America**: Maintain technological leadership while addressing inequality
+
+## Looking Forward
+
+The analysis reveals that while investment universally drives growth, the effectiveness varies significantly across regions due to differences in institutions, human capital, and economic structure. Successful development strategies must be tailored to regional conditions while learning from global best practices.

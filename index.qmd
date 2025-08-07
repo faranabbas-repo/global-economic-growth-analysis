@@ -189,7 +189,9 @@ This analysis employs two complementary approaches to understand the drivers of 
 2. **Panel Data Analysis (2000-2023)**: Two-way fixed effects model controlling for country-specific and time-specific factors
 
 The panel model specification:
-$$\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) + \beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} + \beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
+$$\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) + 
+\beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} + 
+\beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
 
 Where $\alpha_i$ represents country fixed effects, $\gamma_t$ represents year fixed effects, and $\epsilon_{it}$ is the error term.
 
