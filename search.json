@@ -102,14 +102,14 @@
     "href": "model.html#cross-sectional-model-2023",
     "title": "Econometric Models and Results",
     "section": "Cross-Sectional Model (2023)",
-    "text": "Cross-Sectional Model (2023)\nThe cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:\n\\[\\text{GDP Growth}_i = \\beta_0 + \\beta_1 \\log(\\text{GNI per capita}_i) +\n\\beta_2 \\text{Trade openness}_i + \\beta_3 \\text{Investment}_i +\n\\beta_4 \\text{Unemployment}_i + \\beta_5 \\text{Inflation}_i + \\epsilon_i\\]\nWhere \\(i\\) indexes countries and \\(\\epsilon_i\\) is the error term."
+    "text": "Cross-Sectional Model (2023)\nThe cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:\n\\[\\text{GDP Growth}_i = \\beta_0 + \\beta_1 \\log(\\text{GNI per capita}_i) +\n                        \\beta_2 \\text{Trade openness}_i + \\beta_3 \\text{Investment}_i +\n                        \\beta_4 \\text{Unemployment}_i +\n                        \\beta_5 \\text{Inflation}_i + \\epsilon_i\\]\nWhere \\(i\\) indexes countries and \\(\\epsilon_i\\) is the error term."
   },
   {
     "objectID": "model.html#panel-data-model-with-fixed-effects-2000-2023",
     "href": "model.html#panel-data-model-with-fixed-effects-2000-2023",
     "title": "Econometric Models and Results",
     "section": "Panel Data Model with Fixed Effects (2000-2023)",
-    "text": "Panel Data Model with Fixed Effects (2000-2023)\nThe panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:\n\\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) +\n\\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} +\n\\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} + \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere: - \\(i\\) indexes countries, \\(t\\) indexes time (years) - \\(\\alpha_i\\) represents country-specific fixed effects (controlling for time-invariant country characteristics) - \\(\\gamma_t\\) represents year-specific fixed effects (controlling for global shocks and trends) - \\(\\epsilon_{it}\\) is the idiosyncratic error term"
+    "text": "Panel Data Model with Fixed Effects (2000-2023)\nThe panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:\n\\[\\text{GDP Growth}_{it} = \\beta_1 \\log(\\text{GNI per capita}_{it}) +\n                          \\beta_2 \\text{Trade openness}_{it} + \\beta_3 \\text{Investment}_{it} +\n                          \\beta_4 \\text{Unemployment}_{it} + \\beta_5 \\text{Inflation}_{it} +\n                          \\alpha_i + \\gamma_t + \\epsilon_{it}\\]\nWhere: - \\(i\\) indexes countries, \\(t\\) indexes time (years) - \\(\\alpha_i\\) represents country-specific fixed effects (controlling for time-invariant country characteristics) - \\(\\gamma_t\\) represents year-specific fixed effects (controlling for global shocks and trends) - \\(\\epsilon_{it}\\) is the idiosyncratic error term"
   },
   {
     "objectID": "model.html#regression-results",
@@ -172,7 +172,7 @@
     "href": "index.html#key-findings",
     "title": "Global Economic Growth Analysis",
     "section": "Key Findings",
-    "text": "Key Findings\n\n🏗️ Investment Drives Growth: A 1 percentage point increase in gross capital formation (as % of GDP) is associated with a 0.2-0.3 percentage point increase in GDP growth.\n\n\n🌐 Trade Openness Matters: Countries with higher export shares consistently experience faster economic growth across all regions and time periods.\n\n\n📊 Regional Disparities: East Asia & Pacific and Europe & Central Asia lead in investment rates, while Sub-Saharan Africa faces significant development challenges.\n\n\n💼 Employment Impact: Higher unemployment rates consistently correlate with lower GDP growth, highlighting the importance of labor market policies."
+    "text": "Key Findings\n\nInvestment Drives Growth: A 1 percentage point increase in gross capital formation (as % of GDP) is associated with a 0.2-0.3 percentage point increase in GDP growth.\n\n\nTrade Openness Matters: Countries with higher export shares consistently experience faster economic growth across all regions and time periods.\n\n\nRegional Disparities: East Asia & Pacific and Europe & Central Asia lead in investment rates, while Sub-Saharan Africa faces significant development challenges.\n\n\nEmployment Impact: Higher unemployment rates consistently correlate with lower GDP growth, highlighting the importance of labor market policies."
   },
   {
     "objectID": "sources.html",
