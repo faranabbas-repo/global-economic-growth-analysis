@@ -9,7 +9,7 @@
 <meta name="author" content="Faran Abbas">
 <meta name="dcterms.date" content="2025-08-07">
 
-<title>Data Sources – Global Economic Growth Analysis (2000-2023)</title>
+<title>Sources – Global Economic Growth Analysis (2000-2023)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4130,11 +4130,7 @@ border: 0;
   <ul class="collapse">
   <li><a href="#initial-data-assessment" id="toc-initial-data-assessment" class="nav-link" data-scroll-target="#initial-data-assessment">Initial Data Assessment</a></li>
   </ul></li>
-  </ul></li>
-  <li><a href="#data-coverage-by-region-and-time-period" id="toc-data-coverage-by-region-and-time-period" class="nav-link" data-scroll-target="#data-coverage-by-region-and-time-period">Data Coverage by Region and Time Period</a>
-  <ul class="collapse">
-  <li><a href="#cross-sectional-vs.-panel-analysis" id="toc-cross-sectional-vs.-panel-analysis" class="nav-link" data-scroll-target="#cross-sectional-vs.-panel-analysis">Cross-Sectional vs. Panel Analysis</a></li>
-  <li><a href="#variable-transformations" id="toc-variable-transformations" class="nav-link" data-scroll-target="#variable-transformations">Variable Transformations</a></li>
+  <li><a href="#data-coverage-by-region-and-time-period" id="toc-data-coverage-by-region-and-time-period" class="nav-link" data-scroll-target="#data-coverage-by-region-and-time-period">Data Coverage by Region and Time Period</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -4144,7 +4140,7 @@ border: 0;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Data Sources</h1>
+<h1 class="title">Sources</h1>
 </div>
 
 
@@ -4325,9 +4321,8 @@ border: 0;
 </div>
 </section>
 </section>
-</section>
-<section id="data-coverage-by-region-and-time-period" class="level1">
-<h1>Data Coverage by Region and Time Period</h1>
+<section id="data-coverage-by-region-and-time-period" class="level2">
+<h2 class="anchored" data-anchor-id="data-coverage-by-region-and-time-period">Data Coverage by Region and Time Period</h2>
 <div class="cell" data-tbl-cap>
 <div class="cell-output-display">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small" data-quarto-postprocess="true">
@@ -4401,30 +4396,6 @@ border: 0;
 </tbody>
 </table>
 </div>
-</div>
-<section id="cross-sectional-vs.-panel-analysis" class="level3">
-<h3 class="anchored" data-anchor-id="cross-sectional-vs.-panel-analysis">Cross-Sectional vs. Panel Analysis</h3>
-<ul>
-<li><strong>Cross-sectional (2023)</strong>: Captures current relationships and country differences</li>
-<li><strong>Panel data (2000-2023)</strong>: Controls for time-invariant country characteristics and global trends</li>
-<li><strong>Fixed Effects</strong>: Addresses unobserved heterogeneity and endogeneity concerns</li>
-</ul>
-</section>
-<section id="variable-transformations" class="level3">
-<h3 class="anchored" data-anchor-id="variable-transformations">Variable Transformations</h3>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Log transformation for income</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model_data<span class="sc">$</span>log_gni_per_capita <span class="ot">&lt;-</span> <span class="fu">log</span>(model_data<span class="sc">$</span>gni_per_capita <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Inflation rate calculation</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>model_data <span class="ot">&lt;-</span> model_data <span class="sc">%&gt;%</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(country, year) <span class="sc">%&gt;%</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">inflation_rate =</span> (cpi <span class="sc">/</span> <span class="fu">lag</span>(cpi, <span class="at">order_by =</span> year) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 
 
