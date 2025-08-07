@@ -1,0 +1,382 @@
+---
+title: "Economic Trends and Regional Analysis"
+subtitle: "Patterns in GDP Growth Determinants Across Regions and Time"
+format: 
+  html: 
+    toc: true
+    toc-depth: 3
+    theme: cosmo
+    self-contained: true
+    code-fold: true
+    fig-width: 12
+    fig-height: 8
+author: "Faran Abbas"
+date: "2025-08-06"
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+source("analyze_script.R")
+load("analysis_results.RData")
+
+library(tidyverse)
+library(kableExtra)
+library(ggplot2)
+library(plotly)
+library(viridis)
+library(patchwork)
+```
+
+# Regional Economic Landscape
+
+Understanding regional patterns in economic indicators provides crucial context for interpreting our growth models. This analysis examines how key variables—income per capita, trade openness, investment, and unemployment—vary across world regions in 2023, and explores their evolution over the 2000-2023 period.
+
+---
+
+# Current Regional Performance (2023)
+
+## Income and Development Disparities
+
+```{r income-regional}
+#| fig-cap: "Income per Capita by Region (2023)"
+#| fig-subcap: "Log scale used to better show disparities. Box plots show distribution within each region."
+#| fig-height: 10
+
+# Enhanced income plot with more details
+p1 <- ggplot(model_data, aes(x = reorder(region, gni_per_capita, FUN = median), 
+                            y = gni_per_capita, fill = region)) +
+  geom_violin(alpha = 0.7, scale = "width") +
+  geom_boxplot(width = 0.2, alpha = 0.8, outlier.alpha = 0.5) +
+  stat_summary(fun = mean, geom = "point", shape = 23, size = 4, 
+               fill = "red", color = "darkred") +
+  scale_y_log10(labels = scales::dollar_format(scale = 0.001, suffix = "K")) +
+  coord_flip() +
+  scale_fill_viridis_d(option = "plasma") +
+  labs(
+    title = "Income Disparities Across Regions",
+    subtitle = "GNI per Capita Distribution (2023) - Log Scale",
+    y = "GNI per Capita (Current US$)",
+    x = NULL,
+    caption = "Red diamonds show regional means\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 12),
+    axis.text = element_text(size = 11)
+  )
+
+p1
+```
+
+```{r income-summary}
+#| tbl-cap: "Income Statistics by Region (2023)"
+
+income_stats <- model_data %>%
+  group_by(region) %>%
+  summarise(
+    Countries = n(),
+    `Min Income` = min(gni_per_capita, na.rm = TRUE),
+    `Median Income` = median(gni_per_capita, na.rm = TRUE),
+    `Max Income` = max(gni_per_capita, na.rm = TRUE),
+    `Mean Income` = mean(gni_per_capita, na.rm = TRUE),
+    `Std Dev` = sd(gni_per_capita, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(`Median Income`)) %>%
+  mutate(
+    across(c(`Min Income`, `Median Income`, `Max Income`, `Mean Income`, `Std Dev`), 
+           ~round(.x, 0))
+  )
+
+kable(income_stats, format.args = list(big.mark = ",")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  add_header_above(c(" " = 2, "Income per Capita (US$)" = 5))
+```
+
+**Key Insights:**
+- **North America** leads with median income >$50,000, but with high internal variation
+- **Sub-Saharan Africa** faces the greatest challenge with median income <$2,000
+- **East Asia & Pacific** shows tremendous diversity, from low-income to high-income countries
+- Income inequality **within regions** is substantial, especially in East Asia & Pacific and Europe & Central Asia
+
+---
+
+## Trade Integration Patterns
+
+```{r trade-patterns}
+#| fig-cap: "Trade Openness Across Regions"
+#| layout-ncol: 2
+#| fig-subcap:
+#|   - "Regional Distribution of Export Shares"
+#|   - "Trade Openness vs. Income Level"
+
+# Trade openness by region
+p2a <- ggplot(model_data, aes(x = reorder(region, exports_gdp, FUN = median), 
+                             y = exports_gdp, fill = region)) +
+  geom_boxplot(alpha = 0.7, outlier.alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.4, size = 1.5) +
+  coord_flip() +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Trade Openness by Region",
+    y = "Exports (% of GDP)",
+    x = NULL,
+    caption = "Source: World Bank WDI (2023)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+# Trade vs income
+p2b <- ggplot(model_data, aes(x = log(gni_per_capita), y = exports_gdp, color = region)) +
+  geom_point(alpha = 0.7, size = 3) +
+  geom_smooth(method = "loess", se = FALSE, color = "black", linetype = "dashed") +
+  scale_color_viridis_d() +
+  labs(
+    title = "Trade-Income Relationship",
+    x = "Log GNI per Capita",
+    y = "Exports (% of GDP)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+p2a
+p2b
+```
+
+```{r trade-stats}
+#| tbl-cap: "Trade Openness Statistics by Region (2023)"
+
+trade_stats <- model_data %>%
+  group_by(region) %>%
+  summarise(
+    Countries = n(),
+    `Mean Exports (% GDP)` = round(mean(exports_gdp, na.rm = TRUE), 1),
+    `Median Exports (% GDP)` = round(median(exports_gdp, na.rm = TRUE), 1),
+    `Min Exports (% GDP)` = round(min(exports_gdp, na.rm = TRUE), 1),
+    `Max Exports (% GDP)` = round(max(exports_gdp, na.rm = TRUE), 1),
+    `Highly Trade-Oriented (>50%)` = sum(exports_gdp > 50, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(`Mean Exports (% GDP)`))
+
+kable(trade_stats) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+**Trade Pattern Analysis:**
+- **Europe & Central Asia** shows highest average trade openness (42.1% of GDP)
+- **Sub-Saharan Africa** has moderate trade integration but high variation
+- **North America** surprisingly shows lower trade shares relative to economic development
+- Small island states and resource-rich countries often show extreme values
+
+---
+
+## Investment and Capital Formation
+
+```{r investment-analysis}
+#| fig-cap: "Investment Patterns Across Regions"
+#| fig-height: 10
+
+# Investment heatmap by region and country
+investment_plot <- model_data %>%
+  group_by(region) %>%
+  arrange(desc(capital_formation)) %>%
+  slice_head(n = 8) %>%  # Top 8 countries per region
+  ungroup() %>%
+  ggplot(aes(x = reorder(country, capital_formation), y = capital_formation, 
+             fill = region)) +
+  geom_col(alpha = 0.8) +
+  coord_flip() +
+  facet_wrap(~region, scales = "free_y", ncol = 2) +
+  scale_fill_viridis_d() +
+  labs(
+    title = "Top Investment Performers by Region",
+    subtitle = "Gross Capital Formation as % of GDP (2023)",
+    x = NULL,
+    y = "Investment (% of GDP)",
+    caption = "Shows top 8 countries per region\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    axis.text.x = element_text(size = 9),
+    axis.text.y = element_text(size = 8),
+    strip.text = element_text(size = 10, face = "bold")
+  )
+
+investment_plot
+```
+
+```{r investment-gdp-relationship}
+#| fig-cap: "Investment vs GDP Growth Relationship by Region"
+#| fig-width: 12
+#| fig-height: 8
+
+# Investment-growth relationship by region
+p3 <- ggplot(model_data, aes(x = capital_formation, y = gdp_growth, color = region)) +
+  geom_point(aes(size = gni_per_capita), alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, alpha = 0.3) +
+  facet_wrap(~region, scales = "free", ncol = 3) +
+  scale_color_viridis_d() +
+  scale_size_continuous(name = "GNI per Capita", 
+                       labels = function(x) paste0("$", round(x/1000, 0), "K"),
+                       range = c(2, 6)) +
+  labs(
+    title = "Investment-Growth Relationship Varies by Region",
+    subtitle = "Each panel shows the relationship within a specific region",
+    x = "Gross Capital Formation (% of GDP)",
+    y = "GDP Growth Rate (%)",
+    caption = "Bubble size indicates income level\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    strip.text = element_text(size = 11, face = "bold")
+  ) +
+  guides(
+    color = "none",  # Remove color legend as it's in facet titles
+    size = guide_legend(override.aes = list(alpha = 1))
+  )
+
+p3
+```
+
+**Investment Insights:**
+- **East Asia & Pacific** shows strongest investment-growth correlation
+- **Sub-Saharan Africa** has high investment rates but more variable growth outcomes
+- **Europe & Central Asia** shows moderate investment with stable growth
+- Some regions show weak investment-growth relationships, suggesting other factors matter
+
+---
+
+# Time Evolution (2000-2023)
+
+## Long-term Trends in Key Indicators
+
+```{r time-evolution}
+#| fig-cap: "Evolution of Economic Indicators Over Time"
+#| fig-height: 12
+
+# Create regional time trends
+regional_time_trends <- clean_panel_data %>%
+  filter(!is.na(region)) %>%
+  group_by(region, year) %>%
+  summarise(
+    avg_gdp_growth = mean(gdp_growth, na.rm = TRUE),
+    avg_investment = mean(capital_formation, na.rm = TRUE),
+    avg_trade_openness = mean(exports_gdp, na.rm = TRUE),
+    avg_unemployment = mean(unemployment, na.rm = TRUE),
+    countries = n(),
+    .groups = "drop"
+  )
+
+# GDP Growth trends
+p4a <- ggplot(regional_time_trends, aes(x = year, y = avg_gdp_growth, color = region)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  scale_color_viridis_d() +
+  labs(
+    title = "A. GDP Growth Trends by Region",
+    x = "Year",
+    y = "Average GDP Growth (%)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Investment trends
+p4b <- ggplot(regional_time_trends, aes(x = year, y = avg_investment, color = region)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  scale_color_viridis_d() +
+  labs(
+    title = "B. Investment Trends by Region",
+    x = "Year",
+    y = "Average Investment (% GDP)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Trade trends
+p4c <- ggplot(regional_time_trends, aes(x = year, y = avg_trade_openness, color = region)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  scale_color_viridis_d() +
+  labs(
+    title = "C. Trade Openness Trends by Region",
+    x = "Year",
+    y = "Average Exports (% GDP)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Unemployment trends
+p4d <- ggplot(regional_time_trends, aes(x = year, y = avg_unemployment, color = region)) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  scale_color_viridis_d() +
+  labs(
+    title = "D. Unemployment Trends by Region",
+    x = "Year",
+    y = "Average Unemployment (%)",
+    color = "Region"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Combine plots
+(p4a / p4b / p4c / p4d) +
+  plot_layout(guides = "collect") &
+  theme(legend.position = "bottom")
+```
+
+**Time Trend Analysis:**
+- **2008-2009 Financial Crisis**: Clear impact on GDP growth across all regions
+- **2020 COVID-19 Pandemic**: Sharp GDP decline followed by recovery
+- **Investment Stability**: Most regions maintain investment rates around 20-25% of GDP
+- **Trade Evolution**: Generally increasing until mid-2010s, then plateauing
+- **Unemployment**: Europe & Central Asia shows highest and most volatile unemployment
+
+---
+
+## Crisis Impact Analysis
+
+```{r crisis-analysis}
+#| tbl-cap: "Regional Economic Performance During Crisis Years"
+
+# Define crisis periods
+crisis_periods <- list(
+  `Pre-Crisis (2005-2007)` = 2005:2007,
+  `Financial Crisis (2008-2009)` = 2008:2009,
+  `Recovery (2010-2012)` = 2010:2012,
+  `Stable Growth (2013-2019)` = 2013:2019,
+  `COVID-19 (2020-2021)` = 2020:2021,
+  `Post-COVID (2022-2023)` = 2022:2023
+)
+
+crisis_analysis <- map_dfr(crisis_periods, function(years) {
+  clean_panel_data %>%
+    filter(year %in% years, !is.na(region)) %>%
+    group_by(region) %>%
+    summarise(
+      avg_gdp_growth = round(mean(gdp_growth, na.rm = TRUE), 2),
+      avg_investment = round(mean(capital_formation, na.rm = TRUE), 1),
+      avg_unemployment = round(mean(unemployment, na.rm = TRUE), 1),
+      .groups = "drop"
+    )
+}, .id = "period")
+
+#

@@ -1,0 +1,257 @@
+---
+title: "Global Economic Growth Analysis (2000–2023)"
+subtitle: "Understanding the Drivers of Economic Development Worldwide"
+format: 
+  html:
+    toc: true
+    theme: cosmo
+    self-contained: true
+    code-fold: true
+    fig-width: 10
+    fig-height: 6
+author: "Faran Abbas"
+date: "2025-08-06"
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+source("analyze_script.R")
+# Load saved results
+load("analysis_results.RData")
+
+library(tidyverse)
+library(kableExtra)
+library(ggplot2)
+library(corrplot)
+library(plotly)
+```
+
+# Summary
+
+This comprehensive analysis examines the key determinants of economic growth across more than 180 countries from 2000 to 2023, using data from the World Bank's World Development Indicators. Through both cross-sectional and panel data methodologies, we identify **investment (gross capital formation)** as the most significant driver of GDP growth, followed by trade openness and macroeconomic stability indicators.
+
+
+## Model Performance Summary
+
+```{r model-summary}
+#| tbl-cap: "Model Performance Comparison"
+
+model_comparison <- data.frame(
+  Model = c("Cross-Sectional (2023)", "Fixed Effects Panel (2000-2023)"),
+  `R-squared` = c(cross_summary$r.squared, fe_summary$r.squared),
+  `Adj. R-squared` = c(cross_summary$adj.r.squared, fe_summary$adj.r.squared),
+  `F-statistic` = c(cross_summary$statistic, fe_summary$statistic),
+  `P-value` = c(cross_summary$p.value, fe_summary$p.value),
+  Observations = c(nrow(model_data), nrow(panel_model_data))
+)
+
+knitr::kable(model_comparison, digits = 4, format.args = list(scientific = FALSE))
+```
+
+---
+
+# Economic Growth Patterns Across Regions
+
+```{r regional-growth-plot}
+#| fig-cap: "GDP Growth Performance by Region (2023)"
+#| fig-height: 8
+
+# Box plot of GDP growth by region
+p2 <- ggplot(model_data, aes(x = reorder(region, gdp_growth, FUN = median), y = gdp_growth, fill = region)) +
+  geom_boxplot(alpha = 0.7, outlier.alpha = 0.5) +
+  geom_point(position = position_jitter(width = 0.2), alpha = 0.4, size = 1.5) +
+  stat_summary(fun = mean, geom = "point", shape = 23, size = 3, fill = "red") +
+  coord_flip() +
+  labs(
+    title = "GDP Growth Distribution by Region (2023)",
+    subtitle = "Red diamonds indicate regional means",
+    x = NULL,
+    y = "GDP Growth Rate (%)",
+    caption = "Source: World Bank World Development Indicators (2023)"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  scale_fill_viridis_d()
+
+p2
+```
+
+```{r regional-summary-table}
+#| tbl-cap: "Regional Economic Performance Summary (2023)"
+
+regional_summary %>%
+  mutate(
+    avg_gdp_growth = round(avg_gdp_growth, 2),
+    avg_gni_per_capita = round(avg_gni_per_capita, 0),
+    avg_exports = round(avg_exports, 1),
+    avg_investment = round(avg_investment, 1),
+    avg_unemployment = round(avg_unemployment, 1)
+  ) %>%
+  kable(
+    col.names = c("Region", "Countries", "Avg GDP Growth (%)", "Avg GNI per Capita (US$)", 
+                  "Avg Exports (% GDP)", "Avg Investment (% GDP)", "Avg Unemployment (%)"),
+    format = "markdown",
+    format.args = list(big.mark = ",")
+  )
+```
+
+---
+
+# Investment-Growth Relationship
+
+```{r investment-growth-scatter}
+#| fig-cap: "The Strong Link Between Investment and Economic Growth"
+#| fig-subcap: "Each point represents a country in 2023. The line shows the fitted relationship."
+
+# Scatter plot of investment vs GDP growth
+p3 <- ggplot(model_data, aes(x = capital_formation, y = gdp_growth)) +
+  geom_point(aes(color = region, size = gni_per_capita), alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE, color = "darkblue", alpha = 0.3) +
+  scale_size_continuous(name = "GNI per Capita", 
+                       labels = function(x) paste0("$", format(x/1000, digits = 1), "K"),
+                       range = c(2, 8)) +
+  scale_color_viridis_d(name = "Region") +
+  labs(
+    title = "Investment Drives Economic Growth",
+    subtitle = "Relationship between Gross Capital Formation and GDP Growth (2023)",
+    x = "Gross Capital Formation (% of GDP)",
+    y = "GDP Growth Rate (%)",
+    caption = "Bubble size indicates GNI per capita\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  guides(
+    color = guide_legend(override.aes = list(size = 4)),
+    size = guide_legend(override.aes = list(alpha = 1))
+  )
+
+p3
+```
+
+---
+
+# Top and Bottom Performers
+
+```{r performance-tables}
+#| layout-ncol: 2
+#| tbl-cap: 
+#|   - "Top 10 GDP Growth Performers (2023)"
+#|   - "Bottom 10 GDP Growth Performers (2023)"
+
+# Top performers
+top_performers %>%
+  mutate(
+    gdp_growth = round(gdp_growth, 1),
+    capital_formation = round(capital_formation, 1),
+    exports_gdp = round(exports_gdp, 1)
+  ) %>%
+  kable(
+    col.names = c("Country", "Region", "GDP Growth (%)", "Investment (% GDP)", "Exports (% GDP)"),
+    format = "markdown"
+  )
+
+# Bottom performers
+bottom_performers %>%
+  mutate(
+    gdp_growth = round(gdp_growth, 1),
+    capital_formation = round(capital_formation, 1),
+    exports_gdp = round(exports_gdp, 1)
+  ) %>%
+  kable(
+    col.names = c("Country", "Region", "GDP Growth (%)", "Investment (% GDP)", "Exports (% GDP)"),
+    format = "markdown"
+  )
+```
+
+---
+
+# Data and Methodology
+
+This analysis employs two complementary approaches to understand the drivers of economic growth:
+
+## Variables Used
+
+- **GDP Growth**: Annual percentage growth rate of GDP at market prices
+- **Income per Capita**: Log of Gross National Income per capita (current US$)
+- **Trade Openness**: Exports of goods and services as percentage of GDP
+- **Investment**: Gross capital formation as percentage of GDP  
+- **Unemployment**: Unemployment rate as percentage of total labor force
+- **Inflation**: Annual inflation rate based on Consumer Price Index
+
+---
+
+## Statistical Models
+
+1. **Cross-Sectional Analysis (2023)**: Multiple linear regression examining relationships in the most recent year
+2. **Panel Data Analysis (2000-2023)**: Two-way fixed effects model controlling for country-specific and time-specific factors
+
+The panel model specification:
+$$\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) + \beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} + \beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
+
+Where $\alpha_i$ represents country fixed effects, $\gamma_t$ represents year fixed effects, and $\epsilon_{it}$ is the error term.
+
+---
+
+# Main Results: Impact of Key Factors on GDP Growth
+
+```{r main-results-plot}
+#| fig-cap: "Coefficient Estimates from Fixed-Effects Panel Model (2000–2023)"
+#| fig-subcap: "Error bars represent 95% confidence intervals. Positive values indicate factors that promote GDP growth."
+
+# Create confidence intervals
+tidy_fe_plot <- tidy_fe %>%
+  mutate(
+    ci_lower = estimate - 1.96 * std.error,
+    ci_upper = estimate + 1.96 * std.error,
+    color_group = ifelse(estimate > 0, "Positive", "Negative")
+  )
+
+p1 <- ggplot(tidy_fe_plot, aes(x = reorder(term, estimate), y = estimate, fill = color_group)) +
+  geom_col(alpha = 0.7) +
+  geom_errorbar(aes(ymin = ci_lower, ymax = ci_upper), width = 0.2) +
+  geom_text(aes(label = paste0(round(estimate, 3), significance)), 
+            hjust = ifelse(tidy_fe_plot$estimate > 0, -0.1, 1.1), size = 3.5) +
+  coord_flip() +
+  scale_fill_manual(values = c("Positive" = "steelblue", "Negative" = "coral")) +
+  labs(
+    title = "Impact of Economic Factors on GDP Growth",
+    subtitle = "Two-way Fixed Effects Model Results (2000-2023)",
+    x = NULL, 
+    y = "Coefficient Estimate (Percentage Points)",
+    fill = "Direction of Impact",
+    caption = "*** p<0.001, ** p<0.01, * p<0.05, . p<0.1\nSource: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5, size = 12),
+    axis.text = element_text(size = 11),
+    axis.title = element_text(size = 12),
+    legend.position = "bottom"
+  )
+
+p1
+```
+
+## Key Findings
+
+- **Investment drives growth**: A 1 percentage point increase in gross capital formation (as % of GDP) is associated with a 0.2-0.3 percentage point increase in GDP growth
+- **Trade openness matters**: Countries with higher export shares tend to experience faster economic growth
+- **Regional disparities persist**: East Asia & Pacific and Europe & Central Asia lead in investment rates, while Sub-Saharan Africa faces significant challenges
+- **Unemployment burden**: Higher unemployment rates consistently correlate with lower GDP growth across all models
+
+
+
+
+
+# Policy Implications
+
+Based on our findings, countries seeking to accelerate economic growth should prioritize:
+
+1. **Boost Investment**: Policies that encourage both public and private investment in infrastructure, technology, and human capital
+2. **Enhance Trade Integration**: Reducing trade barriers and improving export competitiveness
+3. **Maintain Macroeconomic Stability**: Controlling inflation and unemployment through sound fiscal and monetary policies
+4. **Address Regional Disparities**: Targeted development programs for regions lagging in key indicators

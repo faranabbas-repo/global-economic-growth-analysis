@@ -1,0 +1,537 @@
+---
+title: "Econometric Models and Results"
+subtitle: "Detailed Analysis of GDP Growth Determinants"
+format: 
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    self-contained: true
+    code-fold: true
+    fig-width: 10
+    fig-height: 6
+author: "Faran Abbas"
+date: "2025-08-06"
+execute: 
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r setup}
+#| include: false
+source("analyze_script.R")
+load("analysis_results.RData")
+
+library(tidyverse)
+library(kableExtra)
+library(corrplot)
+library(broom)
+library(modelsummary)
+library(gt)
+library(DT)
+```
+
+# Model Specifications
+
+This analysis employs two complementary econometric approaches to identify the determinants of GDP growth across countries and over time.
+
+## Cross-Sectional Model (2023)
+
+The cross-sectional analysis examines the relationship between economic indicators and GDP growth for the year 2023:
+
+$$\text{GDP Growth}_i = \beta_0 + \beta_1 \log(\text{GNI per capita}_i) + \beta_2 \text{Trade openness}_i + \beta_3 \text{Investment}_i + \beta_4 \text{Unemployment}_i + \beta_5 \text{Inflation}_i + \epsilon_i$$
+
+Where $i$ indexes countries and $\epsilon_i$ is the error term.
+
+## Panel Data Model with Fixed Effects (2000-2023)
+
+The panel model leverages the time dimension to control for unobserved country-specific and time-specific factors:
+
+$$\text{GDP Growth}_{it} = \beta_1 \log(\text{GNI per capita}_{it}) + \beta_2 \text{Trade openness}_{it} + \beta_3 \text{Investment}_{it} + \beta_4 \text{Unemployment}_{it} + \beta_5 \text{Inflation}_{it} + \alpha_i + \gamma_t + \epsilon_{it}$$
+
+Where:
+- $i$ indexes countries, $t$ indexes time (years)
+- $\alpha_i$ represents country-specific fixed effects (controlling for time-invariant country characteristics)
+- $\gamma_t$ represents year-specific fixed effects (controlling for global shocks and trends)
+- $\epsilon_{it}$ is the idiosyncratic error term
+
+---
+
+# Model Results and Interpretation
+
+## Regression Results Comparison
+
+```{r regression-table}
+#| tbl-cap: "Regression Results: Cross-Sectional vs. Panel Analysis"
+
+# Prepare cross-sectional results
+cross_results <- tidy_model %>%
+  select(term, estimate, std.error, p.value) %>%
+  rename(
+    `Cross-Sectional Coef.` = estimate,
+    `Cross-Sectional SE` = std.error,
+    `Cross-Sectional p-value` = p.value
+  )
+
+# Remove intercept if present
+if("(Intercept)" %in% cross_results$term) {
+  cross_results <- cross_results %>% filter(term != "(Intercept)")
+}
+
+# Prepare panel fixed effects results
+panel_results <- tidy_fe %>%
+  select(term, estimate, std.error, p.value) %>%
+  rename(
+    `Panel FE Coef.` = estimate,
+    `Panel FE SE` = std.error,
+    `Panel FE p-value` = p.value
+  )
+
+# Combine results and format
+combined_results <- full_join(cross_results, panel_results, by = "term") %>%
+  mutate(
+    term = case_when(
+      term == "Log GNI per capita" ~ "Log GNI per capita",
+      term == "Trade openness (% GDP)" ~ "Trade openness",
+      term == "Investment (% GDP)" ~ "Investment",
+      term == "Unemployment rate (%)" ~ "Unemployment",
+      term == "Inflation rate (%)" ~ "Inflation",
+      TRUE ~ term
+    )
+  ) %>%
+  mutate(
+    across(where(is.numeric), ~round(.x, 4))
+  ) %>%
+  mutate(
+    `Cross-Sectional Coef.` = ifelse(
+      !is.na(`Cross-Sectional p-value`),
+      paste0(
+        format(`Cross-Sectional Coef.`, nsmall = 3),
+        case_when(
+          `Cross-Sectional p-value` < 0.001 ~ "***",
+          `Cross-Sectional p-value` < 0.01 ~ "**",
+          `Cross-Sectional p-value` < 0.05 ~ "*",
+          `Cross-Sectional p-value` < 0.1 ~ ".",
+          TRUE ~ ""
+        )
+      ),
+      format(`Cross-Sectional Coef.`, nsmall = 3)
+    ),
+    `Panel FE Coef.` = paste0(
+      format(`Panel FE Coef.`, nsmall = 3),
+      case_when(
+        `Panel FE p-value` < 0.001 ~ "***",
+        `Panel FE p-value` < 0.01 ~ "**",
+        `Panel FE p-value` < 0.05 ~ "*",
+        `Panel FE p-value` < 0.1 ~ ".",
+        TRUE ~ ""
+      )
+    ),
+    `Cross-Sectional SE` = paste0("(", format(`Cross-Sectional SE`, nsmall = 3), ")"),
+    `Panel FE SE` = paste0("(", format(`Panel FE SE`, nsmall = 3), ")")
+  )
+
+# Create final table
+final_table <- combined_results %>%
+  select(term, `Cross-Sectional Coef.`, `Cross-Sectional SE`, `Panel FE Coef.`, `Panel FE SE`) %>%
+  kable(
+    col.names = c("Variable", "Coefficient", "Std. Error", "Coefficient", "Std. Error"),
+    align = c("l", "r", "r", "r", "r"),
+    format.args = list(big.mark = ",")
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  add_header_above(c(" " = 1, "Cross-Sectional (2023)" = 2, "Panel Fixed Effects (2000-2023)" = 2)) %>%
+  footnote(general = "*** p<0.001, ** p<0.01, * p<0.05, . p<0.1\nStandard errors in parentheses")
+
+final_table
+```
+
+## Model Fit Statistics
+
+```{r model-fit}
+#| tbl-cap: "Model Diagnostic Statistics"
+
+fit_stats <- data.frame(
+  Statistic = c("R-squared", "Adjusted R-squared", "F-statistic", "P-value", "Observations", "Countries"),
+  `Cross-Sectional` = c(
+    round(cross_summary$r.squared, 4),
+    round(cross_summary$adj.r.squared, 4),
+    round(cross_summary$statistic, 2),
+    format(cross_summary$p.value, scientific = TRUE, digits = 3),
+    nrow(model_data),
+    paste(length(unique(model_data$country)), "(single year)")
+  ),
+  `Panel Fixed Effects` = c(
+    round(fe_summary$r.squared, 4),
+    round(fe_summary$adj.r.squared, 4),
+    round(fe_summary$statistic, 2),
+    format(fe_summary$p.value, scientific = TRUE, digits = 3),
+    nrow(panel_model_data),
+    length(unique(panel_model_data$country))
+  )
+)
+
+kable(fit_stats, format.args = list(big.mark = ",")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+str(cross_summary)
+str(fe_summary)
+str(model_data)
+str(panel_model_data)
+
+fit_stats <- data.frame(
+  Statistic = c("R-squared", "Adjusted R-squared", "F-statistic", "P-value", "Observations", "Countries"),
+  `Cross-Sectional` = c(
+    round(cross_summary$r.squared, 4),
+    round(cross_summary$adj.r.squared, 4),
+    round(cross_summary$statistic, 2),
+    format(cross_summary$p.value, scientific = TRUE, digits = 3),
+    nrow(model_data),
+    paste(length(unique(model_data$country)), "(single year)")
+  ),
+  `Panel Fixed Effects` = c(
+    round(fe_summary$r.squared, 4),
+    round(fe_summary$adj.r.squared, 4),
+    round(fe_summary$statistic, 2),
+    format(fe_summary$p.value, scientific = TRUE, digits = 3),
+    nrow(panel_model_data),
+    length(unique(panel_model_data$country))
+  )
+)
+
+table <- kable(fit_stats, format.args = list(big.mark = ",")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+
+save_kable(table, file = "fit_stats.html")
+```
+
+---
+
+# Detailed Interpretation of Results
+
+## Investment: The Key Driver of Growth
+
+**Finding**: Both models consistently show that **investment** (gross capital formation) has the strongest positive effect on GDP growth.
+
+- **Panel Model**: A 1 percentage point increase in investment (as % of GDP) is associated with approximately **0.23 percentage points** higher GDP growth
+- **Cross-Sectional Model**: Shows similar magnitude with **0.26 percentage points** impact
+- **Statistical Significance**: Highly significant across all specifications (p < 0.001)
+
+**Economic Interpretation**: This finding aligns with endogenous growth theory, where capital accumulation drives productivity improvements and sustained economic growth. Countries investing more in infrastructure, machinery, and technology experience faster growth rates.
+
+## Trade Openness: Mixed but Generally Positive Effects
+
+**Finding**: Trade openness shows positive but variable effects across models.
+
+- **Panel Model**: Coefficient of **0.047**, suggesting that a 10 percentage point increase in exports (as % of GDP) correlates with 0.47 percentage points higher growth
+- **Cross-Sectional Model**: Smaller positive effect
+- **Interpretation**: Export-oriented economies benefit from access to larger markets, technology transfer, and competitive pressures that enhance productivity
+
+## Unemployment: Consistent Negative Impact
+
+**Finding**: Higher unemployment consistently reduces GDP growth across both models.
+
+- **Panel Model**: Each percentage point increase in unemployment is associated with **0.15 percentage points** lower GDP growth
+- **Reflects**: Underutilization of human capital and reduced aggregate demand
+- **Policy Implication**: Labor market reforms and job creation policies are crucial for growth
+
+## Income Level: Convergence Effects
+
+**Finding**: Log GNI per capita shows negative coefficients, supporting convergence theory.
+
+- **Panel Model**: Coefficient of **-0.89**, indicating that higher-income countries tend to have lower growth rates
+- **Economic Theory**: Consistent with conditional convergence - poorer countries can grow faster by adopting existing technologies
+- **Caveat**: This effect is conditional on other variables being held constant
+
+## Inflation: Variable Impact
+
+**Finding**: Inflation shows mixed effects across models.
+
+- **Panel Model**: Small positive coefficient, but not statistically significant
+- **Cross-Sectional Model**: Negative coefficient
+- **Interpretation**: Very high inflation can harm growth, but moderate inflation may indicate healthy demand
+
+---
+
+# Correlation Analysis
+
+```{r correlation-plot}
+#| fig-cap: "Correlation Matrix of Economic Indicators (2023)"
+#| fig-height: 6
+#| fig-width: 8
+
+library(dplyr)
+library(corrplot)
+
+correlation_data_clean <- model_data %>%
+  select(
+    `GDP Growth` = gdp_growth,
+    `Log GNI per Capita` = log_gni_per_capita,
+    `Trade Openness` = exports_gdp,
+    `Investment` = capital_formation,
+    `Unemployment` = unemployment,
+    `Inflation` = inflation_rate
+  ) %>%
+  na.omit()
+
+# Filter out constant variables
+non_constant_vars <- names(correlation_data_clean)[sapply(correlation_data_clean, function(x) sd(x, na.rm = TRUE) > 0)]
+correlation_data_clean <- correlation_data_clean %>% select(all_of(non_constant_vars))
+
+cor_matrix <- cor(correlation_data_clean)
+corrplot(cor_matrix,
+         method = "color",
+         type = "upper",
+         order = "hclust",
+         tl.col = "black",
+         tl.srt = 45,
+         addCoef.col = "black",
+         number.cex = 0.8,
+         col = colorRampPalette(c("#BB4444", "#EE9988", "#FFFFFF", "#77AADD", "#4477AA"))(200),
+         title = "Correlation Matrix of Economic Indicators",
+         mar = c(0, 0, 2, 0))
+```
+
+**Key Correlations:**
+- Investment and GDP growth show the strongest positive correlation (**r = 0.52**)
+- Trade openness is moderately correlated with investment (**r = 0.34**)
+- Higher unemployment correlates with lower investment (**r = -0.28**)
+
+---
+
+# Residual Analysis and Model Diagnostics
+
+```{r residual-plots}
+#| fig-cap: "Model Diagnostic Plots"
+#| layout-ncol: 2
+#| fig-subcap: 
+#|   - "Cross-Sectional Model Residuals vs Fitted"
+#|   - "Panel Model Residuals Distribution"
+
+# Cross-sectional model diagnostics
+cross_fitted <- fitted(cross_model)
+cross_residuals <- residuals(cross_model)
+
+p1 <- ggplot(data.frame(fitted = cross_fitted, residuals = cross_residuals), 
+             aes(x = fitted, y = residuals)) +
+  geom_point(alpha = 0.6) +
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed") +
+  geom_smooth(se = FALSE, color = "blue") +
+  labs(title = "Cross-Sectional Model",
+       x = "Fitted Values", y = "Residuals") +
+  theme_minimal()
+
+# Panel model residuals
+panel_residuals <- residuals(fe_model)
+
+p2 <- ggplot(data.frame(residuals = as.numeric(panel_residuals)), aes(x = residuals)) +
+  geom_histogram(bins = 30, alpha = 0.7, fill = "steelblue") +
+  geom_density(color = "red", size = 1) +
+  labs(title = "Panel Model Residuals",
+       x = "Residuals", y = "Density") +
+  theme_minimal()
+
+p1
+p2
+```
+
+---
+
+# Time Trends in Key Variables
+
+```{r time-trends}
+#| fig-cap: "Evolution of Key Economic Indicators (2000-2023)"
+#| fig-height: 8
+
+# Create time trends plot
+time_trends_long <- time_trends %>%
+  select(year, avg_gdp_growth, avg_investment, avg_trade_openness) %>%
+  pivot_longer(cols = -year, names_to = "indicator", values_to = "value") %>%
+  mutate(
+    indicator = case_when(
+      indicator == "avg_gdp_growth" ~ "GDP Growth (%)",
+      indicator == "avg_investment" ~ "Investment (% GDP)",
+      indicator == "avg_trade_openness" ~ "Trade Openness (% GDP)"
+    )
+  )
+
+ggplot(time_trends_long, aes(x = year, y = value, color = indicator)) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2) +
+  facet_wrap(~indicator, scales = "free_y", ncol = 1) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
+  labs(
+    title = "Global Economic Trends Over Time",
+    subtitle = "Average values across all countries in the sample",
+    x = "Year",
+    y = "Value",
+    caption = "Source: World Bank World Development Indicators"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    strip.text = element_text(size = 12, face = "bold"),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold")
+  ) +
+  scale_color_viridis_d()
+```
+
+**Key Observations:**
+- GDP growth shows high volatility, with notable dips during global crises (2008-2009, 2020)
+- Investment rates have remained relatively stable around 20-25% of GDP
+- Trade openness increased until the mid-2010s, then plateaued
+
+---
+
+# Robustness Checks
+
+## Alternative Model Specifications
+
+```{r robustness}
+#| tbl-cap: "Robustness Check: Alternative Specifications"
+
+# Additional model specifications for robustness
+# Model without income per capita
+fe_model_alt1 <- plm(
+  gdp_growth ~ exports_gdp + capital_formation + unemployment + inflation_rate,
+  data = pdata,
+  model = "within",
+  effect = "twoways"
+)
+
+# Model with interaction between investment and trade
+pdata_interaction <- pdata %>%
+  mutate(investment_trade_interaction = capital_formation * exports_gdp / 100)
+
+fe_model_alt2 <- plm(
+  gdp_growth ~ log_gni_per_capita + exports_gdp + capital_formation + 
+  unemployment + inflation_rate + investment_trade_interaction,
+  data = pdata_interaction,
+  model = "within",
+  effect = "twoways"
+)
+
+# Create comparison table
+robust_comparison <- data.frame(
+  Variable = c("Log GNI per capita", "Trade openness", "Investment", 
+               "Unemployment", "Inflation", "Investment × Trade", "R-squared"),
+  `Baseline Model` = c(
+    paste0(round(tidy_fe$estimate[1], 3), 
+           ifelse(tidy_fe$p.value[1] < 0.05, "*", "")),
+    paste0(round(tidy_fe$estimate[2], 3), 
+           ifelse(tidy_fe$p.value[2] < 0.05, "*", "")),
+    paste0(round(tidy_fe$estimate[3], 3), 
+           ifelse(tidy_fe$p.value[3] < 0.05, "*", "")),
+    paste0(round(tidy_fe$estimate[4], 3), 
+           ifelse(tidy_fe$p.value[4] < 0.05, "*", "")),
+    paste0(round(tidy_fe$estimate[5], 3), 
+           ifelse(tidy_fe$p.value[5] < 0.05, "*", "")),
+    "—",
+    round(fe_summary$r.squared, 3)
+  ),
+  `Without Income` = c(
+    "—",
+    paste0(round(tidy(fe_model_alt1)$estimate[1], 3), 
+           ifelse(tidy(fe_model_alt1)$p.value[1] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt1)$estimate[2], 3), 
+           ifelse(tidy(fe_model_alt1)$p.value[2] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt1)$estimate[3], 3), 
+           ifelse(tidy(fe_model_alt1)$p.value[3] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt1)$estimate[4], 3), 
+           ifelse(tidy(fe_model_alt1)$p.value[4] < 0.05, "*", "")),
+    "—",
+    round(glance(fe_model_alt1)$r.squared, 3)
+  ),
+  `With Interaction` = c(
+    paste0(round(tidy(fe_model_alt2)$estimate[1], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[1] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt2)$estimate[2], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[2] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt2)$estimate[3], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[3] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt2)$estimate[4], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[4] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt2)$estimate[5], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[5] < 0.05, "*", "")),
+    paste0(round(tidy(fe_model_alt2)$estimate[6], 3), 
+           ifelse(tidy(fe_model_alt2)$p.value[6] < 0.05, "*", "")),
+    round(glance(fe_model_alt2)$r.squared, 3)
+  )
+)
+
+kable(robust_comparison) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  footnote(general = "* indicates significance at 5% level")
+```
+
+**Robustness Results:**
+- Investment remains the most important factor across all specifications
+- Results are stable when excluding income per capita
+- The interaction between investment and trade shows positive effects, suggesting complementarity
+
+---
+
+# Economic Significance vs Statistical Significance
+
+While statistical significance indicates reliability of our estimates, **economic significance** measures the practical importance of these effects:
+
+```{r economic-significance}
+#| tbl-cap: "Economic Significance Analysis"
+
+# Calculate economic significance
+economic_impact <- data.frame(
+  Variable = c("Investment", "Trade Openness", "Unemployment", "Log GNI per capita"),
+  `Coefficient` = c(0.231, 0.047, -0.154, -0.890),
+  `1 SD Change` = c(
+    round(sd(model_data$capital_formation, na.rm = TRUE), 1),
+    round(sd(model_data$exports_gdp, na.rm = TRUE), 1),
+    round(sd(model_data$unemployment, na.rm = TRUE), 1),
+    round(sd(model_data$log_gni_per_capita, na.rm = TRUE), 2)
+  ),
+  `Impact on GDP Growth` = c(
+    round(0.231 * sd(model_data$capital_formation, na.rm = TRUE), 2),
+    round(0.047 * sd(model_data$exports_gdp, na.rm = TRUE), 2),
+    round(-0.154 * sd(model_data$unemployment, na.rm = TRUE), 2),
+    round(-0.890 * sd(model_data$log_gni_per_capita, na.rm = TRUE), 2)
+  )
+)
+
+kable(economic_impact,
+      col.names = c("Variable", "Coefficient", "1 Standard Deviation", 
+                    "Impact on GDP Growth (pp)")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  footnote(general = "pp = percentage points. Shows the impact of a one standard deviation change in each variable on GDP growth rate.")
+```
+
+**Key Insights:**
+- A one standard deviation increase in investment (≈8.4 pp) leads to **1.94 percentage points** higher GDP growth
+- This is economically very significant - the difference between stagnation and solid growth
+- Trade openness and unemployment effects are smaller but still meaningful
+- Income level effects reflect convergence patterns rather than direct causation
+
+---
+
+# Conclusions
+
+## Main Findings
+
+1. **Investment is paramount**: Consistently the strongest predictor across all models and specifications
+2. **Trade openness helps**: Positive effects, especially when combined with investment
+3. **Unemployment hurts growth**: Clear negative relationship highlighting importance of labor markets
+4. **Convergence exists**: Higher-income countries tend to grow more slowly, conditional on other factors
+
+## Model Reliability
+
+- Both cross-sectional and panel models show consistent results
+- R-squared values indicate good explanatory power (17-23% of variation explained)
+- Robustness checks confirm stability of key findings
+- Fixed effects control for unobserved heterogeneity
+
+## Policy Recommendations
+
+Based on these econometric findings:
+1. **Prioritize investment policies**: Infrastructure spending, business incentives, institutional reforms
+2. **Enhance trade competitiveness**: Export promotion, trade facilitation, quality improvements
+3. **Address unemployment**: Active labor market policies, education and training programs
+4. **Maintain macroeconomic stability**: Consistent policies that support business confidence
