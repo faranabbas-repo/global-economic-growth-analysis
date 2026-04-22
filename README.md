@@ -1,141 +1,156 @@
-# Global Economic Growth Analysis (2000–2023)
+# Global Economic Growth Analysis
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Site-blue?style=flat&logo=github)](https://faranabbas-repo.github.io/global-economic-growth-analysis/)
-[![Data Source](https://img.shields.io/badge/Data%20Source-World%20Bank%20WDI-orange?style=flat)](https://datacatalog.worldbank.org/search/dataset/0037712)
+[![Live Site](https://img.shields.io/badge/Live%20Site-GitHub%20Pages-blue?style=flat&logo=github)](https://faranabbas-repo.github.io/global-economic-growth-analysis/)
+[![Data Source](https://img.shields.io/badge/Data-World%20Bank%20WDI-orange?style=flat)](https://datacatalog.worldbank.org/search/dataset/0037712)
 
+Panel-data analysis of the drivers of GDP growth across 180+ countries from 2000 to 2023 using World Bank World Development Indicators.
 
-> **Key Finding**: Investment is the single most powerful driver of economic growth across countries and time periods, with each percentage point increase in ***gross capital formation*** associated with ***0.2-0.3*** percentage points ***higher GDP growth***.
+This project is built as an economics portfolio piece: it frames a real macroeconomic question, works with a global cross-country dataset, applies econometric models in R, and translates the results into policy-relevant insights.
 
-## 📊 Project Overview
+## Project Snapshot
 
-This comprehensive analysis examines the drivers of economic growth across **180+ countries** from 2000 to 2023, using data from the World Bank's World Development Indicators. Through both cross-sectional and panel data methodologies, the study identifies key factors that promote sustainable economic development worldwide.
+- Question: Which factors are most strongly associated with GDP growth across countries and over time?
+- Data: World Bank World Development Indicators, 2000-2023
+- Unit of analysis: Country-year observations plus a 2023 cross-section
+- Methods: Multiple regression and two-way fixed effects panel estimation
+- Main result: Investment, measured by gross capital formation as a share of GDP, is the strongest and most consistent positive predictor of growth in this project
 
-**🔗 [View Live Analysis](https://faranabbas-repo.github.io/global-economic-growth-analysis/)**
+## Why This Project Matters
 
-## 🎯 Key Research Questions
+Economic growth is one of the core outcomes studied in development economics, international economics, and public policy. This repository moves beyond theory by using real-world macroeconomic data to test how investment, trade openness, labor market conditions, inflation, and income levels relate to growth performance.
 
-- What are the primary drivers of GDP growth across countries?
-- How do investment, trade openness, and labor market conditions affect economic growth?
-- Do growth patterns vary significantly across world regions?
+For a recruiter, professor, or collaborator, this repo shows the ability to:
 
-## 📈 Main Findings
+- define an economics question clearly
+- work with a multi-country panel dataset
+- clean and transform raw data in R
+- estimate and interpret regression models
+- communicate findings through a reproducible website
 
-### 🏗️ Investment is Paramount
-- **Strongest predictor** of GDP growth across all models
-- 1% increase in investment → 0.2-0.3% higher GDP growth
-- Critical for both developing and developed economies
+## Research Question
 
-### 🌍 Trade Openness Helps
-- Export-oriented economies show higher growth rates
-- Particularly beneficial when combined with high investment
-- Regional variations in trade-growth relationships
+The analysis focuses on three linked questions:
 
-### 💼 Unemployment Hurts Growth  
-- Clear negative relationship across all specifications
-- Highlights importance of labor market policies
-- Regional differences in unemployment impacts
+1. Which macroeconomic indicators are most strongly associated with GDP growth across countries?
+2. Does investment remain important after controlling for country and year effects?
+3. How do growth patterns and key indicators vary across world regions?
 
-### 🔄 Convergence Evidence
-- Poorer countries tend to grow faster (conditional convergence)
-- But significant variation within income groups
-- Investment quality matters more than quantity
+## Data
 
-## 🗺️ Regional Insights
+Source: World Bank World Development Indicators (WDI)
 
-| Region | Key Characteristics |
-|--------|-------------------|
-| **East Asia & Pacific** | 🏆 Highest investment rates, strong growth |
-| **Sub-Saharan Africa** | 📈 High growth potential, investment challenges |
-| **Europe & Central Asia** | ⚖️ Stable growth, unemployment concerns |
-| **Latin America & Caribbean** | 🔄 Moderate performance, trade opportunities |
+Coverage:
 
-## 🛠️ Methodology
+- 180+ countries
+- 2000-2023
+- Cross-sectional analysis for 2023
+- Panel analysis for 2000-2023
 
-### Data
-- **Source**: World Bank World Development Indicators (WDI)
-- **Coverage**: 180+ countries, 2000-2023
-- **Variables**: GDP growth, investment, trade, unemployment, inflation, income
+Core variables:
 
-### Models
-1. **Cross-Sectional Regression (2023)**: Current relationships
-2. **Panel Fixed Effects (2000-2023)**: Controls for country and time effects
+- GDP growth
+- GNI per capita
+- exports as a share of GDP
+- gross capital formation as a share of GDP
+- unemployment rate
+- inflation rate derived from CPI
 
-### Tools
-- **R** for statistical analysis
-- **Quarto** for reproducible reporting
-- **GitHub Pages** for publication
+## Methodology
 
-## 📁 Repository Structure
+The project uses two complementary empirical strategies.
 
-```
+### 1. Cross-Sectional Regression
+
+A multiple linear regression estimates how GDP growth in 2023 is related to income, trade openness, investment, unemployment, and inflation across countries.
+
+### 2. Two-Way Fixed Effects Panel Model
+
+A panel model uses country and year fixed effects to control for time-invariant country characteristics and global shocks across 2000-2023.
+
+This allows the project to move from simple correlation toward a more credible comparison of within-country changes over time.
+
+## Key Findings
+
+- Investment stands out as the strongest positive predictor of GDP growth across model specifications.
+- Trade openness is positively associated with growth, though effects vary across countries and regions.
+- Higher unemployment is linked to weaker growth outcomes.
+- Regional patterns matter: countries with stronger investment performance tend to show stronger growth distributions.
+
+The central interpretation is that capital formation plays a major role in growth performance, but macroeconomic outcomes still depend on labor market conditions, external integration, and regional context.
+
+## Economics Skills Demonstrated
+
+- Macroeconomic and development-data analysis
+- Cross-country panel data work
+- Econometric modeling in R
+- Variable construction and cleaning
+- Policy-oriented interpretation
+- Reproducible reporting with Quarto
+- Public presentation through GitHub Pages
+
+## Live Output
+
+- Live site: [global-economic-growth-analysis](https://faranabbas-repo.github.io/global-economic-growth-analysis/)
+- Repository: [faranabbas-repo/global-economic-growth-analysis](https://github.com/faranabbas-repo/global-economic-growth-analysis)
+
+## Repository Structure
+
+```text
 global-economic-growth-analysis/
-├── 📊 index.qmd           # Main analysis and results
-├── 🔬 model.qmd           # Detailed econometric models  
-├── 📈 trends.qmd          # Regional trends and patterns
-├── 📋 sources.qmd         # Data sources and methodology
-├── 👤 about.qmd           # Author and project info
-├── ⚙️ _quarto.yml         # Site configuration
-├── 📜 scripts/
-│   └── analyze.R          # Main analysis script
-├── 💾 data/               # Data files (auto-generated)
-└── 📖 README.md           # This file
+|-- index.qmd               Main analysis and summary
+|-- model.qmd               Econometric model detail
+|-- trends.qmd              Regional and time-trend analysis
+|-- sources.qmd             Data documentation
+|-- about.qmd               Project and author overview
+|-- analyze_script.R        Data download, cleaning, and model code
+|-- analysis_results.RData  Saved model outputs for rendering
+|-- fit_stats.html          Rendered model statistics output
+|-- _quarto.yml             Website configuration
+|-- styles.css              Site styling
+|-- _site/                  Rendered website
+|-- data/                   Raw downloaded WDI data
+`-- README.md               Project overview
 ```
 
-## 🚀 Quick Start
+## How To Reproduce
 
-### Prerequisites
+1. Clone the repository.
+2. Install the required R packages.
+3. Run the analysis script to download or load the data and save model outputs.
+4. Render the Quarto site.
+
+Example workflow:
+
 ```r
-install.packages(c("WDI", "plm", "broom", "tidyverse", 
-                   "kableExtra", "ggplot2", "quarto"))
+install.packages(c(
+  "tidyverse", "WDI", "plm", "broom", "knitr", "kableExtra",
+  "ggplot2", "corrplot", "stargazer", "plotly", "viridis",
+  "patchwork", "modelsummary", "gt", "DT"
+))
+
+source("analyze_script.R")
 ```
 
-### Run Analysis
-```r
-# Clone repository
-git clone https://github.com/faranabbas-repo/global-economic-growth-analysis.git
-
-# Navigate to project
-setwd("global-economic-growth-analysis")
-
-# Run analysis
-source("scripts/analyze.R")
-
-# Render site
-quarto::quarto_render()
-```
-
-### Publish to GitHub Pages
 ```bash
-quarto publish gh-pages
+quarto render
 ```
 
-## 📊 Sample Visualizations
+## Portfolio Value
 
-The analysis includes:
+This is the kind of project that strengthens an economics CV because it does not stop at listing tools. It demonstrates the ability to frame a question, use real international data, apply econometric methods, and explain why the findings matter.
 
-- 📈 **Coefficient plots** showing factor importance,
-- 🗺️ **Regional comparisons** with box plots and trends,  
-- 💹 **Investment-growth scatter plots** with country labels,
-- 📉 **Time series** showing evolution of key indicators,
-- 🔗 **Correlation matrices** revealing variable relationships,
+A concise CV description for this repo could be:
 
-## 💡 Policy Implications
+> Built a cross-country panel-data project using World Bank WDI data for 180+ countries (2000-2023), applying regression and two-way fixed effects models in R to identify investment as a key driver of GDP growth.
 
-1. **Prioritize Investment**: Infrastructure, education, and business-friendly policies
-2. **Enhance Trade**: Export promotion and trade facilitation
-3. **Address Unemployment**: Active labor market policies
+## Author
 
+Faran Abbas
+Graduate Student, World Economy, Shandong University
 
-## 👨‍🎓 About me
+- Email: [faranabbas@hotmail.com](mailto:faranabbas@hotmail.com)
+- GitHub: [faranabbas-repo](https://github.com/faranabbas-repo)
 
-**Faran Abbas**  
-Graduate Student, World Economy  
-Shandong University  
-
-- 📧 Email: [faranabbas@hotmail.com](mailto:faranabbas@hotmail.com)
-- 🐙 GitHub: [@faranabbas-repo](https://github.com/faranabbas-repo)
-- 🎓 Focus: International trade, fiscal policy, economic development
-
-## 🎯 Course Context
+## Acknowledgment
 
 This project was developed as part of [Kane's Data Science Bootcamp](https://bootcamp.davidkane.info/).
